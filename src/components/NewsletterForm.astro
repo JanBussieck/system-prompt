@@ -1,0 +1,32 @@
+---
+import { FORMSPREE } from '../config';
+interface Props { variant?: 'block' | 'inline'; }
+const { variant = 'block' } = Astro.props;
+---
+<form class:list={['nl', variant]} action={FORMSPREE.newsletter} method="POST" data-formspree data-success="You're in. Talk soon.">
+  <label class="kicker nl-label" for={`nl-email-${variant}`}>Get the field notes in your inbox</label>
+  <div class="row">
+    <input id={`nl-email-${variant}`} name="email" type="email" required placeholder="you@company.dev" autocomplete="email" />
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha" />
+    <button class="btn btn--primary" type="submit">Subscribe</button>
+  </div>
+  <p class="nl-msg" role="status" aria-live="polite" hidden></p>
+  <p class="nl-fine">One monthly note. No spam. Delivered via Formspree.</p>
+</form>
+<style>
+  .nl { border: var(--border); border-radius: var(--radius); padding: var(--sp-8); background: var(--surface); }
+  .nl-label { margin-bottom: 0; }
+  .nl .row { display: flex; gap: var(--sp-3); margin-top: var(--sp-3); }
+  .nl input[type='email'] {
+    flex: 1; min-width: 0; padding: .72rem .9rem; border: var(--border); border-radius: var(--radius-sm);
+    background: var(--bg); color: var(--ink); font: 400 var(--fs-base)/1 var(--font-sans);
+  }
+  .nl input[type='email']::placeholder { color: var(--ink-faint); }
+  .gotcha { position: absolute; left: -9999px; width: 1px; height: 1px; }
+  .nl-fine { margin: var(--sp-3) 0 0; font-size: var(--fs-xs); color: var(--ink-faint); }
+  .nl-msg { margin: var(--sp-3) 0 0; font-size: var(--fs-sm); }
+  .nl-msg.ok { color: var(--term-green); }
+  .nl-msg.err { color: #c0402a; }
+  .nl.inline { border: none; padding: 0; background: none; }
+  @media (max-width: 560px) { .nl .row { flex-direction: column; } }
+</style>

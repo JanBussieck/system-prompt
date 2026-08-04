@@ -1,9 +1,131 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Terminal from '../components/Terminal.astro';
+import SectionKicker from '../components/SectionKicker.astro';
+import PostCard from '../components/PostCard.astro';
+import FieldNoteCard from '../components/FieldNoteCard.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const heroLines = [
+  'is your SDK an agent darling?',
+  "build vs. buy — who's actually cheaper now?",
+  "how do you become the LLM's default import?",
+];
+
+const featuredPosts = (await getCollection('writing', ({ data }) => data.featured && !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const featuredNotes = (await getCollection('field-notes', ({ data }) => data.featured))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
 ---
 <Base>
-  <section class="container" style="padding-block: var(--sp-16)">
-    <h1>System Prompt</h1>
-    <p class="prose">Layout scaffolding in place.</p>
+  <!-- Hero -->
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="kicker">A monthly coffee chat · for people who market dev tools</p>
+      <h1>Your dev tool is being<br /> rewritten by whoever's<br /> <span class="hl">prompting.</span></h1>
+      <p class="lede">Marketing &amp; growth for dev tools in the age of agents — weathering vibecoding, catering to agents, and becoming the default an LLM reaches for.</p>
+      <div class="hero-cta">
+        <a class="btn btn--primary" href="/chats">Join a chat</a>
+        <a class="btn" href="/writing">Read the writing</a>
+      </div>
+    </div>
+    <div class="hero-term">
+      <Terminal lines={heroLines} />
+    </div>
+  </section>
+
+  <hr class="eyebrow-rule container-rule" />
+
+  <!-- Thesis -->
+  <section class="container section">
+    <SectionKicker>The premise</SectionKicker>
+    <div class="thesis">
+      <h2>Generation got cheap. Being chosen got hard.</h2>
+      <div class="thesis-cols">
+        <p>Vibecoding collapsed the cost of "just build it." The demo that used to take a sprint now takes a prompt — which means every default your product relied on is suddenly negotiable.</p>
+        <p>Increasingly, the thing evaluating your tool isn't a developer skimming your homepage. It's an agent reading your docs, your types, and your examples — and deciding whether you're the path of least resistance.</p>
+        <p>The tools that win the next decade get retrieved, cited, and imported by default. This is a room for the people figuring out how to make that happen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured writing -->
+  {featuredPosts.length > 0 && (
+    <section class="container section">
+      <div class="section-head">
+        <SectionKicker>Writing</SectionKicker>
+        <a class="arrow-link" href="/writing">All writing <span class="arw">→</span></a>
+      </div>
+      <div class="grid">{featuredPosts.map((post) => <PostCard post={post} />)}</div>
+    </section>
+  )}
+
+  <!-- Featured field notes -->
+  {featuredNotes.length > 0 && (
+    <section class="container section">
+      <div class="section-head">
+        <SectionKicker>Field notes</SectionKicker>
+        <a class="arrow-link" href="/field-notes">All field notes <span class="arw">→</span></a>
+      </div>
+      <p class="section-sub">How the tools that get picked are positioning for a world where the buyer is a model.</p>
+      <div class="grid">{featuredNotes.map((note) => <FieldNoteCard note={note} />)}</div>
+    </section>
+  )}
+
+  <!-- Coffee-chat CTA -->
+  <section class="container section">
+    <div class="cta-panel">
+      <SectionKicker>The chats</SectionKicker>
+      <h2>A small table, once a month, over coffee.</h2>
+      <p>Eight to ten marketing and growth leaders from dev-tool and SDK companies. One theme, no slides, off the record. It's where the arguments on this site get pressure-tested by the people living them.</p>
+      <a class="btn btn--primary" href="/chats">Apply to join</a>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="container section" id="newsletter">
+    <SectionKicker>Newsletter</SectionKicker>
+    <div class="nl-wrap">
+      <NewsletterForm variant="block" />
+    </div>
   </section>
 </Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--sp-16); align-items: center; padding-block: var(--sp-24) var(--sp-16); }
+  .hero h1 { font-size: clamp(2.4rem, 1.2rem + 4vw, 4rem); margin: var(--sp-4) 0 var(--sp-6); }
+  .hero .hl { color: var(--accent); }
+  .lede { font-size: var(--fs-lg); color: var(--ink-soft); max-width: 46ch; }
+  .hero-cta { display: flex; gap: var(--sp-3); margin-top: var(--sp-8); flex-wrap: wrap; }
+  .hero-term { justify-self: end; width: 100%; }
+
+  .container-rule { max-width: 1080px; margin-inline: auto; }
+  .section { padding-block: var(--sp-24); }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-4); }
+  .section-sub { color: var(--ink-soft); max-width: 52ch; margin-top: calc(var(--sp-4) * -.5); }
+
+  .thesis h2 { max-width: 20ch; }
+  .thesis-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-8); margin-top: var(--sp-8); }
+  .thesis-cols p { color: var(--ink-soft); margin: 0; }
+
+  .grid { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin-top: var(--sp-8); }
+
+  .cta-panel { border: var(--border); border-radius: var(--radius); padding: var(--sp-16); background: var(--surface); }
+  .cta-panel h2 { max-width: 18ch; }
+  .cta-panel p { color: var(--ink-soft); max-width: 56ch; }
+  .cta-panel .btn { margin-top: var(--sp-4); }
+
+  .nl-wrap { max-width: 620px; }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: var(--sp-12); padding-block: var(--sp-16) var(--sp-12); }
+    .hero-term { justify-self: stretch; }
+    .thesis-cols { grid-template-columns: 1fr; gap: var(--sp-6); }
+    .section { padding-block: var(--sp-16); }
+    .cta-panel { padding: var(--sp-8); }
+  }
+</style>

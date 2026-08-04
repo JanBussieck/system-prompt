@@ -1,0 +1,58 @@
+---
+interface Props {
+  lines?: string[];
+}
+const { lines = [] } = Astro.props;
+const data = JSON.stringify(lines);
+---
+<div class="term" role="img" aria-label={`Terminal prompt cycling through: ${lines.join('; ')}`}>
+  <div class="term-bar">
+    <span></span><span></span><span></span>
+    <em>system-prompt — zsh</em>
+  </div>
+  <pre class="term-body"><code><span class="ps">$</span> <span class="typed" data-lines={data}>{lines[0]}</span><span class="cursor" aria-hidden="true">▋</span></code></pre>
+</div>
+<style>
+  .term {
+    background: var(--term-bg);
+    border-radius: var(--radius);
+    border: 1px solid #2a2a22;
+    overflow: hidden;
+    width: 100%;
+    max-width: 640px;
+    box-shadow: 0 18px 40px -24px rgba(0,0,0,.5);
+  }
+  .term-bar { display: flex; align-items: center; gap: 6px; padding: .6rem .8rem; border-bottom: 1px solid #2a2a22; }
+  .term-bar > span { width: 11px; height: 11px; border-radius: 999px; background: #3a3a30; }
+  .term-bar > span:nth-child(1) { background: #e0603a; }
+  .term-bar > span:nth-child(2) { background: #e0b23a; }
+  .term-bar > span:nth-child(3) { background: #3ba55c; }
+  .term-bar em { margin-left: auto; font: 400 var(--fs-xs)/1 var(--font-mono); color: #77776b; font-style: normal; }
+  .term-body { margin: 0; padding: var(--sp-6); font: 400 var(--fs-lg)/1.6 var(--font-mono); color: var(--term-fg); overflow-x: auto; min-height: 2.4em; }
+  .term-body code { white-space: pre-wrap; word-break: break-word; }
+  .ps { color: var(--term-green); }
+  .typed { color: var(--term-fg); }
+  .cursor { color: var(--term-green); animation: blink 1.05s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+</style>
+<script is:inline>
+  (() => {
+    const el = document.querySelector('.typed');
+    if (!el) return;
+    let lines = [];
+    try { lines = JSON.parse(el.getAttribute('data-lines') || '[]'); } catch (e) { return; }
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || lines.length < 2) { el.textContent = lines[0] || ''; return; }
+    let li = 0, ci = 0, deleting = false;
+    const tick = () => {
+      const full = lines[li];
+      el.textContent = full.slice(0, ci);
+      if (!deleting && ci < full.length) { ci++; setTimeout(tick, 42 + Math.random() * 46); }
+      else if (!deleting && ci === full.length) { deleting = true; setTimeout(tick, 1700); }
+      else if (deleting && ci > 0) { ci--; setTimeout(tick, 20); }
+      else { deleting = false; li = (li + 1) % lines.length; setTimeout(tick, 260); }
+    };
+    setTimeout(tick, 520);
+  })();
+</script>

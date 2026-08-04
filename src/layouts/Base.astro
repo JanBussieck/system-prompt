@@ -47,5 +47,38 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
     <SiteHeader />
     <main id="main"><slot /></main>
     <SiteFooter />
+    <script is:inline>
+      (() => {
+        document.querySelectorAll('form[data-formspree]').forEach((f) => {
+          if (f.dataset.bound === '1') return;
+          f.dataset.bound = '1';
+          const msg = f.querySelector('[role="status"]');
+          const show = (t, ok) => {
+            if (!msg) return;
+            msg.hidden = false;
+            msg.textContent = t;
+            msg.className = (msg.className.replace(/\b(ok|err)\b/g, '').trim() + ' ' + (ok ? 'ok' : 'err')).trim();
+          };
+          f.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const success = f.getAttribute('data-success') || 'Thanks — got it.';
+            const submit = f.querySelector('[type="submit"]');
+            if (submit) submit.disabled = true;
+            try {
+              const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+              if (r.ok) { f.reset(); show(success, true); }
+              else {
+                const d = await r.json().catch(() => null);
+                show(d && d.errors ? d.errors.map((x) => x.message).join(', ') : 'Something went wrong — please try again.', false);
+              }
+            } catch (err) {
+              show('Network error — please try again.', false);
+            } finally {
+              if (submit) submit.disabled = false;
+            }
+          });
+        });
+      })();
+    </script>
   </body>
 </html>

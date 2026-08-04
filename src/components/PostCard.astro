@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { post: CollectionEntry<'writing'>; }
+const { post } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+const date = pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+<a class="card" href={`/writing/${post.id}`}>
+  <p class="card-meta"><time datetime={pubDate.toISOString()}>{date}</time>{tags[0] && <span class="dot">·</span>}{tags[0] && <span class="tag">{tags[0]}</span>}</p>
+  <h3 class="card-title">{title}</h3>
+  <p class="card-desc">{description}</p>
+  <span class="card-cue">Read<span class="arw"> →</span></span>
+</a>
+<style>
+  .card {
+    display: flex; flex-direction: column; gap: var(--sp-3);
+    padding: var(--sp-6); border: var(--border); border-radius: var(--radius);
+    background: var(--surface); text-decoration: none; height: 100%;
+    transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { .card:hover { transform: none; } }
+  .card-meta { font: 400 var(--fs-xs)/1 var(--font-mono); color: var(--ink-faint); margin: 0; display: flex; gap: .5rem; align-items: center; }
+  .card-meta .tag { color: var(--accent); }
+  .card-title { margin: 0; font-size: var(--fs-xl); letter-spacing: -.02em; }
+  .card-desc { margin: 0; color: var(--ink-soft); font-size: var(--fs-sm); flex: 1; }
+  .card-cue { font: 500 var(--fs-sm)/1 var(--font-mono); color: var(--ink-soft); }
+  .card:hover .card-cue { color: var(--accent); }
+  .card:hover .arw { display: inline; }
+</style>

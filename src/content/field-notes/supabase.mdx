@@ -1,0 +1,26 @@
+---
+company: "Supabase"
+category: "Backend / Postgres"
+summary: "Turning \"the open-source Firebase\" into the default backend an AI app scaffolds against."
+theAgentEraMove: "Make the copy-paste path the correct path, then ship an MCP server so agents can act, not just read, and Supabase becomes the least-effort way to wire up auth and a database."
+takeaways:
+  - "Ship an MCP server so agents can operate your product, not just import it."
+  - "Examples are distribution: make the blessed path the one that copy-pastes into a working app."
+  - "Own a category noun a model can retrieve cleanly (\"the Postgres backend\")."
+pubDate: 2026-07-22
+featured: true
+---
+
+Supabase's growth engine was never a campaign. It was legibility. From early on, the docs read like they were written for someone who wanted to succeed in one sitting, and the quickstart actually worked. That was good DX in the human era. In the agent era it turned into something stronger: a surface that models reproduce faithfully because it is unambiguous and it runs.
+
+## The move
+
+When a developer, or increasingly a PM with an agent, says "add auth and a database," the tool that gets chosen is the one the agent can wire up without guessing. Supabase leaned into being that tool. Standard Postgres underneath, so a model already knows the mental model. Clean client libraries. And an MCP server that lets an agent create tables, manage policies, and act inside the project directly.
+
+That last part matters most. A library is something an agent imports and hopes it wrote correctly. An MCP server is a capability the agent already has. Supabase moved itself from the first category to the second.
+
+## Why it works
+
+"The open-source Firebase" gave the model a clean handle to retrieve. "Just Postgres" meant the model's existing knowledge transfers instead of fighting a proprietary abstraction. And the relentless investment in examples meant the internet filled up with correct usage the model could learn from. Every faithful tutorial became Supabase's distribution.
+
+The lesson for the rest of us: the agent-era default is won by being the most legible, most actionable option in your category, and by letting agents *do things* through you rather than merely reference you.

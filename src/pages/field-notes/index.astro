@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import FieldNoteCard from '../../components/FieldNoteCard.astro';
+import SectionKicker from '../../components/SectionKicker.astro';
+
+const notes = (await getCollection('field-notes'))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+<Base title="Field Notes" description="How the dev tools that get picked are positioning for a world where the buyer is a model.">
+  <section class="container fn-index">
+    <SectionKicker>Field notes</SectionKicker>
+    <h1>How the tools that get picked position for the agent era.</h1>
+    <p class="lede">Short, opinionated reads on real dev-tool companies and the moves that make them the default. Outside analysis, not endorsements.</p>
+    <div class="grid">
+      {notes.map((note) => <FieldNoteCard note={note} />)}
+    </div>
+  </section>
+</Base>
+<style>
+  .fn-index { padding-block: var(--sp-16); }
+  .fn-index h1 { max-width: 22ch; margin-top: var(--sp-4); }
+  .lede { font-size: var(--fs-lg); color: var(--ink-soft); max-width: 60ch; }
+  .grid { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin-top: var(--sp-12); }
+</style>

@@ -1,0 +1,70 @@
+---
+import Base from './Base.astro';
+interface Props {
+  company: string;
+  category: string;
+  summary: string;
+  theAgentEraMove: string;
+  takeaways: string[];
+}
+const { company, category, summary, theAgentEraMove, takeaways } = Astro.props;
+---
+<Base title={`${company} — Field Note`} description={summary} ogType="article">
+  <article class="container note">
+    <header class="note-head">
+      <a class="arrow-link back" href="/field-notes"><span class="arw">←</span> All field notes</a>
+      <p class="kicker">{category}</p>
+      <h1>{company}</h1>
+      <p class="note-lede">{summary}</p>
+    </header>
+
+    <div class="move">
+      <p class="kicker move-label">The agent-era move</p>
+      <p class="move-body">{theAgentEraMove}</p>
+    </div>
+
+    <div class="takeaways">
+      <p class="kicker">Takeaways</p>
+      <ul>
+        {takeaways.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+
+    <div class="prose note-body">
+      <slot />
+    </div>
+
+    <footer class="note-foot">
+      <a class="arrow-link" href="/field-notes"><span class="arw">←</span> Back to all field notes</a>
+    </footer>
+  </article>
+</Base>
+
+<style>
+  .note { padding-block: var(--sp-16); max-width: 820px; }
+  .note-head { margin-bottom: var(--sp-12); }
+  .back { margin-bottom: var(--sp-8); display: inline-flex; }
+  .note-head .kicker { margin-top: var(--sp-6); color: var(--accent); }
+  .note-head h1 { margin-bottom: var(--sp-4); }
+  .note-lede { font-size: var(--fs-lg); color: var(--ink-soft); max-width: 60ch; }
+
+  .move { border: var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius);
+    padding: var(--sp-8); background: var(--surface); margin-bottom: var(--sp-8); }
+  .move-label { margin-bottom: var(--sp-3); }
+  .move-body { margin: 0; font-size: var(--fs-lg); }
+
+  .takeaways { margin-bottom: var(--sp-12); }
+  .takeaways ul { margin: var(--sp-3) 0 0; padding-left: 1.3rem; }
+  .takeaways li { margin-bottom: var(--sp-2); color: var(--ink); }
+  .takeaways li::marker { color: var(--accent); }
+
+  .note-foot { margin-top: var(--sp-16); padding-top: var(--sp-8); border-top: var(--border); }
+</style>
+
+<style is:global>
+  .note-body { font-size: var(--fs-base); }
+  .note-body h2 { font-size: var(--fs-xl); margin-top: var(--sp-12); margin-bottom: var(--sp-3); }
+  .note-body p { margin: 0 0 var(--sp-4); color: var(--ink); }
+  .note-body a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); }
+  .note-body strong { font-weight: 600; }
+</style>

@@ -1,0 +1,21 @@
+---
+import { getCollection, render } from 'astro:content';
+import FieldNote from '../../layouts/FieldNote.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('field-notes');
+  return notes.map((note) => ({ params: { slug: note.id }, props: { note } }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+---
+<FieldNote
+  company={note.data.company}
+  category={note.data.category}
+  summary={note.data.summary}
+  theAgentEraMove={note.data.theAgentEraMove}
+  takeaways={note.data.takeaways}
+>
+  <Content />
+</FieldNote>

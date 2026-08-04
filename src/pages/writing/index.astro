@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import SectionKicker from '../../components/SectionKicker.astro';
+
+const posts = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+<Base title="Writing" description="Opinionated field notes on marketing dev tools in the agentic era.">
+  <section class="container writing-index">
+    <SectionKicker>Writing</SectionKicker>
+    <h1>Field notes on marketing dev tools in the age of agents.</h1>
+    <p class="lede">Arguments, not takes. On vibecoding, build-vs-buy, agent distribution, and what it means to sell to developers now.</p>
+    <div class="grid">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+</Base>
+<style>
+  .writing-index { padding-block: var(--sp-16); }
+  .writing-index h1 { max-width: 20ch; margin-top: var(--sp-4); }
+  .lede { font-size: var(--fs-lg); color: var(--ink-soft); max-width: 56ch; }
+  .grid { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: var(--sp-12); }
+</style>

@@ -1,0 +1,68 @@
+---
+import Base from './Base.astro';
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags?: string[];
+}
+const { title, description, pubDate, tags = [] } = Astro.props;
+const date = pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+<Base title={title} description={description} ogType="article">
+  <article class="container post">
+    <header class="post-head">
+      <a class="arrow-link back" href="/writing"><span class="arw">←</span> All writing</a>
+      <p class="kicker">Writing</p>
+      <h1>{title}</h1>
+      <p class="post-meta">
+        <time datetime={pubDate.toISOString()}>{date}</time>
+        {tags.map((t) => <span class="tag">#{t}</span>)}
+      </p>
+    </header>
+    <div class="prose post-body">
+      <slot />
+    </div>
+    <footer class="post-foot">
+      <a class="arrow-link" href="/writing"><span class="arw">←</span> Back to all writing</a>
+    </footer>
+  </article>
+</Base>
+
+<style>
+  .post { padding-block: var(--sp-16); }
+  .post-head { max-width: var(--measure); margin-bottom: var(--sp-12); }
+  .back { margin-bottom: var(--sp-8); display: inline-flex; }
+  .post-head .kicker { margin-top: var(--sp-6); }
+  .post-head h1 { margin-bottom: var(--sp-4); }
+  .post-meta { font: 400 var(--fs-sm)/1 var(--font-mono); color: var(--ink-faint); display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
+  .post-meta .tag { color: var(--accent); }
+  .post-foot { max-width: var(--measure); margin-top: var(--sp-16); padding-top: var(--sp-8); border-top: var(--border); }
+</style>
+
+<style is:global>
+  .post-body { font-size: var(--fs-lg); }
+  .post-body h2 { font-size: var(--fs-2xl); margin-top: var(--sp-16); margin-bottom: var(--sp-4); }
+  .post-body h3 { font-size: var(--fs-xl); margin-top: var(--sp-12); }
+  .post-body p { margin: 0 0 var(--sp-6); color: var(--ink); }
+  .post-body ul, .post-body ol { margin: 0 0 var(--sp-6); padding-left: 1.4rem; color: var(--ink); }
+  .post-body li { margin-bottom: var(--sp-2); }
+  .post-body li::marker { color: var(--accent); }
+  .post-body a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); }
+  .post-body strong { font-weight: 600; }
+  .post-body blockquote {
+    margin: var(--sp-8) 0; padding: var(--sp-2) 0 var(--sp-2) var(--sp-6);
+    border-left: 3px solid var(--accent); color: var(--ink-soft); font-style: italic;
+  }
+  .post-body blockquote p:last-child { margin-bottom: 0; }
+  .post-body code {
+    font-family: var(--font-mono); font-size: .88em; background: var(--surface);
+    border: var(--border); border-radius: 4px; padding: .1em .35em;
+  }
+  .post-body pre {
+    margin: var(--sp-8) 0; padding: var(--sp-6); border-radius: var(--radius);
+    border: var(--border); overflow-x: auto; font-size: var(--fs-sm);
+  }
+  .post-body pre code { background: none; border: none; padding: 0; }
+  .post-body hr { border: 0; border-top: var(--border); margin: var(--sp-12) 0; }
+</style>

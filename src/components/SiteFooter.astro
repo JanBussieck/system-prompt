@@ -1,0 +1,45 @@
+---
+import { SITE } from '../config';
+const year = 2026;
+const nav = [
+  { href: '/writing', label: 'Writing' },
+  { href: '/field-notes', label: 'Field Notes' },
+  { href: '/chats', label: 'Chats' },
+];
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="wordmark" href="/"><span class="wm-mono">&gt;_</span> System Prompt</a>
+        <p class="ft-desc">{SITE.description}</p>
+      </div>
+      <nav class="ft-nav" aria-label="Footer">
+        <span class="kicker">Explore</span>
+        {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+      </nav>
+    </div>
+    <div class="ft-bottom">
+      <p class="ft-mono">&gt; convened monthly over coffee</p>
+      <p class="ft-copy">© {year} System Prompt</p>
+    </div>
+  </div>
+</footer>
+<style>
+  .site-footer { border-top: var(--border); margin-top: var(--sp-24); padding-block: var(--sp-16) var(--sp-12); }
+  .ft-top { display: grid; grid-template-columns: 1.6fr 1fr; gap: var(--sp-12); }
+  .ft-brand .wordmark { font-weight: 600; text-decoration: none; }
+  .wm-mono { font-family: var(--font-mono); color: var(--accent); }
+  .ft-desc { margin: var(--sp-3) 0 0; color: var(--ink-soft); font-size: var(--fs-sm); max-width: 46ch; }
+  .ft-nav { display: flex; flex-direction: column; gap: var(--sp-2); }
+  .ft-nav a { color: var(--ink-soft); text-decoration: none; font-size: var(--fs-sm); }
+  .ft-nav a:hover { color: var(--ink); }
+  .ft-bottom { display: flex; justify-content: space-between; align-items: center;
+    margin-top: var(--sp-12); padding-top: var(--sp-6); border-top: var(--border); gap: var(--sp-4); }
+  .ft-mono { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--term-green); margin: 0; }
+  .ft-copy { font-size: var(--fs-xs); color: var(--ink-faint); margin: 0; }
+  @media (max-width: 640px) {
+    .ft-top { grid-template-columns: 1fr; gap: var(--sp-8); }
+    .ft-bottom { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
+  }
+</style>

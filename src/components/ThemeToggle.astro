@@ -1,0 +1,32 @@
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
+  <span aria-hidden="true" class="tt-dot"></span><span class="tt-label" data-theme-label>theme</span>
+</button>
+<style>
+  .theme-toggle {
+    display: inline-flex; align-items: center; gap: var(--sp-2);
+    background: none; border: var(--border); border-radius: 999px;
+    padding: .35rem .7rem; cursor: pointer;
+    font: 500 var(--fs-xs)/1 var(--font-mono); color: var(--ink-soft);
+    transition: border-color var(--dur), color var(--dur);
+  }
+  .tt-dot { width: .6rem; height: .6rem; border-radius: 999px; background: var(--accent); }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--ink); }
+</style>
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('theme-toggle');
+    const label = btn?.querySelector('[data-theme-label]');
+    const sync = () => {
+      const t = document.documentElement.getAttribute('data-theme') || 'light';
+      if (label) label.textContent = t === 'dark' ? 'dark' : 'light';
+    };
+    sync();
+    btn?.addEventListener('click', () => {
+      const el = document.documentElement;
+      const next = el.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      el.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      sync();
+    });
+  })();
+</script>

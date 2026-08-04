@@ -17,6 +17,9 @@ property, so it reads as a peer/community project rather than vendor content.
 
 Tagline: *"Marketing & growth for dev tools in the age of agents."*
 
+Domain: **systemprompt.chat** (confirmed available; owner registering). Canonical
+site URL `https://systemprompt.chat` is baked into meta tags, sitemap, and OG.
+
 ## Goals
 
 - A content-heavy home for opinionated writing on dev-tool GTM in the agent era.
@@ -187,3 +190,4 @@ system-prompt/
 - Real Formspree endpoint IDs.
 - Final fifth case study (Clerk assumed).
 - Real logos/favicon (placeholder wordmark for now).
+- Domain registration at registrar (owner to complete; name confirmed available).

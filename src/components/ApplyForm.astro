@@ -1,0 +1,54 @@
+---
+import { FORMSPREE } from '../config';
+---
+<form class="apply" action={FORMSPREE.apply} method="POST" data-formspree data-success="Got it — we'll be in touch before the next chat.">
+  <div class="field-grid">
+    <label class="field">
+      <span>Name</span>
+      <input name="name" type="text" required autocomplete="name" placeholder="Ada Lovelace" />
+    </label>
+    <label class="field">
+      <span>Email</span>
+      <input name="email" type="email" required autocomplete="email" placeholder="you@company.dev" />
+    </label>
+    <label class="field">
+      <span>Company</span>
+      <input name="company" type="text" required placeholder="Where you do growth / marketing" />
+    </label>
+    <label class="field">
+      <span>Role</span>
+      <input name="role" type="text" placeholder="Head of Growth, DevRel, PMM…" />
+    </label>
+  </div>
+  <label class="field field--full">
+    <span>What are you wrestling with right now?</span>
+    <textarea name="wrestling" rows="4" placeholder="The positioning problem, GTM question, or agent-era headache you'd bring to the table."></textarea>
+  </label>
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha" />
+  <div class="apply-actions">
+    <button class="btn btn--primary" type="submit">Apply to join</button>
+    <p class="apply-msg" role="status" aria-live="polite" hidden></p>
+  </div>
+  <p class="apply-fine">Small room, off the record. We read every application. Submissions handled via Formspree.</p>
+</form>
+<style>
+  .apply { border: var(--border); border-radius: var(--radius); padding: var(--sp-8); background: var(--surface); }
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+  .field { display: flex; flex-direction: column; gap: var(--sp-2); margin-top: var(--sp-4); }
+  .field:first-child, .field-grid > .field:nth-child(2) { margin-top: 0; }
+  .field--full { margin-top: var(--sp-4); }
+  .field > span { font: 500 var(--fs-sm)/1 var(--font-sans); color: var(--ink-soft); }
+  .apply input, .apply textarea {
+    padding: .72rem .9rem; border: var(--border); border-radius: var(--radius-sm);
+    background: var(--bg); color: var(--ink); font: 400 var(--fs-base)/1.4 var(--font-sans); width: 100%;
+  }
+  .apply input::placeholder, .apply textarea::placeholder { color: var(--ink-faint); }
+  .apply textarea { resize: vertical; }
+  .gotcha { position: absolute; left: -9999px; width: 1px; height: 1px; }
+  .apply-actions { display: flex; align-items: center; gap: var(--sp-4); margin-top: var(--sp-6); flex-wrap: wrap; }
+  .apply-msg { margin: 0; font-size: var(--fs-sm); }
+  .apply-msg.ok { color: var(--term-green); }
+  .apply-msg.err { color: #c0402a; }
+  .apply-fine { margin: var(--sp-4) 0 0; font-size: var(--fs-xs); color: var(--ink-faint); }
+  @media (max-width: 560px) { .field-grid { grid-template-columns: 1fr; } .field-grid > .field:nth-child(2) { margin-top: var(--sp-4); } }
+</style>

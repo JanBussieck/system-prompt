@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="404 — Not Found" description="That page doesn't exist.">
+  <section class="container nf">
+    <div class="nf-term">
+      <pre><code><span class="ps">$</span> open {Astro.url.pathname}
+<span class="err">zsh: command not found: page</span>
+<span class="ps">$</span> <span class="cursor">▋</span></code></pre>
+    </div>
+    <h1>404 — nothing to import here.</h1>
+    <p>The page you were looking for isn't in this codebase. Try one of these:</p>
+    <div class="nf-links">
+      <a class="btn" href="/">Home</a>
+      <a class="btn" href="/writing">Writing</a>
+      <a class="btn" href="/field-notes">Field Notes</a>
+      <a class="btn" href="/chats">Chats</a>
+    </div>
+  </section>
+</Base>
+<style>
+  .nf { padding-block: var(--sp-24); max-width: 640px; }
+  .nf-term { background: var(--term-bg); border: 1px solid #2a2a22; border-radius: var(--radius); padding: var(--sp-6); margin-bottom: var(--sp-8); overflow-x: auto; }
+  .nf-term pre { margin: 0; font: 400 var(--fs-sm)/1.7 var(--font-mono); color: var(--term-fg); }
+  .nf-term .ps { color: var(--term-green); }
+  .nf-term .err { color: #e0603a; }
+  .nf-term .cursor { color: var(--term-green); animation: blink 1.05s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .nf-term .cursor { animation: none; } }
+  .nf p { color: var(--ink-soft); }
+  .nf-links { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-6); }
+</style>

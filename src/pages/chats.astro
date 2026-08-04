@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionKicker from '../components/SectionKicker.astro';
+import ApplyForm from '../components/ApplyForm.astro';
+
+const themes = [
+  'Positioning a dev tool when the buyer is an agent',
+  'Build vs. buy now that building is cheap to start',
+  'Distribution to models: getting retrieved, cited, imported',
+];
+---
+<Base title="Coffee Chats" description="A small monthly coffee chat for marketing and growth leaders at dev-tool and SDK companies.">
+  <section class="container chats">
+    <div class="chats-intro">
+      <SectionKicker>The chats</SectionKicker>
+      <h1>A monthly coffee chat for people who market dev tools.</h1>
+      <div class="prose lede-block">
+        <p>Once a month, eight to ten marketing and growth leaders from dev-tool and SDK companies sit down over coffee. One theme, no slides, no pitch. Just the people living the agent-era shift comparing notes on what's actually working.</p>
+        <p>It's for heads of growth, PMMs, DevRel leads, and founders who own go-to-market at companies selling to developers. If you spend your days figuring out how to stay chosen in a world of vibecoding and agents, you'll be among peers.</p>
+        <p>One rule: <strong>Chatham House</strong>. Use what you hear, never attribute it. That's what makes the room honest.</p>
+      </div>
+    </div>
+
+    <div class="themes">
+      <p class="kicker">Recent themes</p>
+      <ul>
+        {themes.map((t) => <li><span class="th-mono">&gt;</span> {t}</li>)}
+      </ul>
+    </div>
+
+    <div class="apply-wrap" id="apply">
+      <SectionKicker>Apply</SectionKicker>
+      <h2>Ask for a seat at the next one.</h2>
+      <p class="apply-intro">Tell us a little about you and what you'd bring to the table. Seats are limited so the room stays small.</p>
+      <ApplyForm />
+    </div>
+  </section>
+</Base>
+<style>
+  .chats { padding-block: var(--sp-16); }
+  .chats-intro h1 { max-width: 20ch; margin-top: var(--sp-4); }
+  .lede-block { margin-top: var(--sp-6); font-size: var(--fs-lg); }
+  .lede-block p { color: var(--ink-soft); }
+  .lede-block strong { color: var(--ink); }
+
+  .themes { margin: var(--sp-16) 0; padding: var(--sp-8) 0; border-block: var(--border); }
+  .themes ul { list-style: none; margin: var(--sp-4) 0 0; padding: 0; }
+  .themes li { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink); padding: var(--sp-2) 0; }
+  .themes .th-mono { color: var(--term-green); margin-right: .4rem; }
+
+  .apply-wrap { max-width: 720px; }
+  .apply-wrap h2 { margin-top: var(--sp-4); }
+  .apply-intro { color: var(--ink-soft); max-width: 56ch; margin-bottom: var(--sp-8); }
+</style>

@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../config';
+import NewsletterForm from './NewsletterForm.astro';
 const year = 2026;
 const nav = [
   { href: '/writing', label: 'Writing' },
@@ -13,6 +14,7 @@ const nav = [
       <div class="ft-brand">
         <a class="wordmark" href="/"><span class="wm-mono">&gt;_</span> System Prompt</a>
         <p class="ft-desc">{SITE.description}</p>
+        <div class="ft-nl"><NewsletterForm variant="inline" /></div>
       </div>
       <nav class="ft-nav" aria-label="Footer">
         <span class="kicker">Explore</span>
@@ -31,6 +33,7 @@ const nav = [
   .ft-brand .wordmark { font-weight: 600; text-decoration: none; }
   .wm-mono { font-family: var(--font-mono); color: var(--accent); }
   .ft-desc { margin: var(--sp-3) 0 0; color: var(--ink-soft); font-size: var(--fs-sm); max-width: 46ch; }
+  .ft-nl { margin-top: var(--sp-6); max-width: 42ch; }
   .ft-nav { display: flex; flex-direction: column; gap: var(--sp-2); }
   .ft-nav a { color: var(--ink-soft); text-decoration: none; font-size: var(--fs-sm); }
   .ft-nav a:hover { color: var(--ink); }

@@ -5,20 +5,23 @@ interface Props {
   variant?: 'full' | 'card';
   label?: string;
 }
-const { art, id = 'art', variant = 'full', label = 'system-prompt' } = Astro.props;
+const { art, variant = 'full', label = 'system-prompt' } = Astro.props;
 ---
 {variant === 'full' ? (
-  <figure class="ascii" data-ascii-id={id} data-art={JSON.stringify(art)}>
+  <figure class="ascii">
     <div class="ascii-bar">
       <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      <em class="ascii-label">{label} — fig</em>
-      <div class="ascii-tools">
-        <button type="button" data-ascii-edit aria-pressed="false">edit</button>
-        <button type="button" data-ascii-copy>copy</button>
-        <button type="button" data-ascii-reset hidden>reset</button>
-      </div>
+      <em class="ascii-label">{label} — doodlepad</em>
+      <span class="ascii-hint" aria-hidden="true">psst — click to scribble ✎</span>
     </div>
-    <pre class="ascii-body"><code data-ascii-art contenteditable="false" spellcheck="false">{art}</code></pre>
+    <pre class="ascii-body"><code
+      data-ascii-art
+      contenteditable="plaintext-only"
+      spellcheck="false"
+      role="textbox"
+      aria-multiline="true"
+      aria-label="ASCII doodle — click to edit it"
+    >{art}</code></pre>
   </figure>
 ) : (
   <div class="ascii-card" role="img" aria-hidden="true">
@@ -34,34 +37,41 @@ const { art, id = 'art', variant = 'full', label = 'system-prompt' } = Astro.pro
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: 0 18px 40px -28px rgba(0,0,0,.5);
+    transform: rotate(-0.6deg);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur);
   }
+  .ascii:hover, .ascii:focus-within {
+    transform: rotate(0deg);
+    box-shadow: 0 22px 48px -26px rgba(0,0,0,.55);
+  }
+  .ascii:focus-within { border-color: #3ba55c88; }
+  @media (prefers-reduced-motion: reduce) {
+    .ascii { transform: none; transition: box-shadow var(--dur) var(--ease), border-color var(--dur); }
+  }
+
   .ascii-bar { display: flex; align-items: center; gap: 6px; padding: .5rem .8rem; border-bottom: 1px solid #2a2a22; }
   .ascii-bar > .dot { width: 11px; height: 11px; border-radius: 999px; background: #3a3a30; flex: none; }
   .ascii-bar > .dot:nth-child(1) { background: #e0603a; }
   .ascii-bar > .dot:nth-child(2) { background: #e0b23a; }
   .ascii-bar > .dot:nth-child(3) { background: #3ba55c; }
   .ascii-label { margin-left: 8px; font: 400 var(--fs-xs)/1 var(--font-mono); color: #77776b; font-style: normal; }
-  .ascii-tools { margin-left: auto; display: flex; gap: 4px; }
-  .ascii-tools button {
-    font: 400 var(--fs-xs)/1 var(--font-mono); color: #a7a698;
-    background: transparent; border: 1px solid #33332b; border-radius: 5px;
-    padding: .28rem .5rem; cursor: pointer; transition: border-color var(--dur), color var(--dur);
+  .ascii-hint {
+    margin-left: auto; font: 400 var(--fs-xs)/1 var(--font-mono); color: #6f6f63;
+    white-space: nowrap; opacity: 0; transition: opacity var(--dur) var(--ease);
   }
-  .ascii-tools button:hover { color: var(--term-green); border-color: #3ba55c; }
-  .ascii-tools button[aria-pressed='true'] { color: var(--term-green); border-color: #3ba55c; }
+  .ascii:hover .ascii-hint { opacity: .8; }
+  .ascii:focus-within .ascii-hint { opacity: 0; }
 
   .ascii-body {
     margin: 0; padding: var(--sp-6) var(--sp-4);
     font: 400 clamp(9px, 1.7vw, 13px)/1.4 var(--font-mono);
     color: var(--term-green);
-    text-align: center; overflow-x: auto;
+    text-align: center; overflow-x: auto; cursor: text;
   }
   .ascii-body code {
     display: inline-block; text-align: left; white-space: pre;
     outline: none; caret-color: var(--term-green);
   }
-  .ascii.editing .ascii-body { background: #0c0c08; }
-  .ascii.editing .ascii-body code { box-shadow: 0 0 0 1px #3ba55c33; }
 
   /* Compact "terminal cover" for cards */
   .ascii-card {
@@ -72,7 +82,10 @@ const { art, id = 'art', variant = 'full', label = 'system-prompt' } = Astro.pro
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
     margin-bottom: var(--sp-4);
+    transition: transform var(--dur) var(--ease);
   }
+  .card:hover .ascii-card { transform: rotate(-1deg) scale(1.02); }
+  @media (prefers-reduced-motion: reduce) { .card:hover .ascii-card { transform: none; } }
   .ascii-card-body {
     margin: 0;
     font: 400 6.5px/1.32 var(--font-mono);
@@ -82,65 +95,11 @@ const { art, id = 'art', variant = 'full', label = 'system-prompt' } = Astro.pro
   }
 </style>
 <script is:inline>
+  // Make the doodlepad editable everywhere: keep plaintext-only where supported,
+  // fall back to plain contenteditable where it isn't.
   (() => {
-    document.querySelectorAll('.ascii[data-ascii-id]').forEach((fig) => {
-      if (fig.dataset.bound === '1') return;
-      fig.dataset.bound = '1';
-      const id = fig.getAttribute('data-ascii-id');
-      const code = fig.querySelector('[data-ascii-art]');
-      const editBtn = fig.querySelector('[data-ascii-edit]');
-      const copyBtn = fig.querySelector('[data-ascii-copy]');
-      const resetBtn = fig.querySelector('[data-ascii-reset]');
-      const key = 'ascii:' + id;
-      let original = '';
-      try { original = JSON.parse(fig.getAttribute('data-art')); } catch (e) { original = code.textContent; }
-
-      // Restore a locally-saved edit, if any.
-      try {
-        const saved = localStorage.getItem(key);
-        if (saved != null && saved !== original) { code.textContent = saved; resetBtn.hidden = false; }
-      } catch (e) {}
-
-      editBtn.addEventListener('click', () => {
-        const on = code.getAttribute('contenteditable') !== 'false' && code.getAttribute('contenteditable') !== null;
-        if (!on) {
-          code.setAttribute('contenteditable', 'plaintext-only');
-          if (code.getAttribute('contenteditable') !== 'plaintext-only') code.setAttribute('contenteditable', 'true');
-          fig.classList.add('editing');
-          editBtn.textContent = 'done';
-          editBtn.setAttribute('aria-pressed', 'true');
-          code.focus();
-        } else {
-          code.setAttribute('contenteditable', 'false');
-          fig.classList.remove('editing');
-          editBtn.textContent = 'edit';
-          editBtn.setAttribute('aria-pressed', 'false');
-        }
-      });
-
-      code.addEventListener('input', () => {
-        try { localStorage.setItem(key, code.textContent); } catch (e) {}
-        resetBtn.hidden = false;
-      });
-
-      copyBtn.addEventListener('click', async () => {
-        const text = code.textContent || '';
-        try {
-          await navigator.clipboard.writeText(text);
-          copyBtn.textContent = 'copied';
-        } catch (e) {
-          copyBtn.textContent = 'select+copy';
-          const r = document.createRange(); r.selectNodeContents(code);
-          const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-        }
-        setTimeout(() => { copyBtn.textContent = 'copy'; }, 1300);
-      });
-
-      resetBtn.addEventListener('click', () => {
-        code.textContent = original;
-        try { localStorage.removeItem(key); } catch (e) {}
-        resetBtn.hidden = true;
-      });
+    document.querySelectorAll('code[data-ascii-art]').forEach((el) => {
+      if (el.contentEditable !== 'plaintext-only') el.setAttribute('contenteditable', 'true');
     });
   })();
 </script>

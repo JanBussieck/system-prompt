@@ -1,0 +1,10 @@
+          open platform   ·   closed core
+
+  API ═══╗        ┌───────────────┐        ╔═══ MCP
+         ╚═══════▶│    ┌───────┐   │◀═══════╝
+                  │    │  src  │   │
+  SDK ═══╗        │    │  [#]  │   │        ╔═══ CLI
+         ╚═══════▶│    └───────┘   │◀═══════╝
+                  └───────────────┘
+            build on it — don't fork it
+                    read ≠ free

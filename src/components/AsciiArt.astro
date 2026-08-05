@@ -1,0 +1,60 @@
+---
+interface Props {
+  art: string;
+  variant?: 'full' | 'card';
+  label?: string;
+}
+const { art, variant = 'full', label = 'system-prompt' } = Astro.props;
+---
+{variant === 'full' ? (
+  <figure class="ascii" role="img" aria-label="ASCII illustration for this post">
+    <div class="ascii-bar"><span></span><span></span><span></span><em>{label} — fig</em></div>
+    <pre class="ascii-body"><code>{art}</code></pre>
+  </figure>
+) : (
+  <div class="ascii-card" role="img" aria-label="ASCII illustration" aria-hidden="true">
+    <pre class="ascii-card-body"><code>{art}</code></pre>
+  </div>
+)}
+<style>
+  .ascii {
+    margin: 0 0 var(--sp-12);
+    max-width: var(--measure);
+    background: var(--term-bg);
+    border: 1px solid #2a2a22;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 18px 40px -28px rgba(0,0,0,.5);
+  }
+  .ascii-bar { display: flex; align-items: center; gap: 6px; padding: .55rem .8rem; border-bottom: 1px solid #2a2a22; }
+  .ascii-bar > span { width: 11px; height: 11px; border-radius: 999px; background: #3a3a30; }
+  .ascii-bar > span:nth-child(1) { background: #e0603a; }
+  .ascii-bar > span:nth-child(2) { background: #e0b23a; }
+  .ascii-bar > span:nth-child(3) { background: #3ba55c; }
+  .ascii-bar em { margin-left: auto; font: 400 var(--fs-xs)/1 var(--font-mono); color: #77776b; font-style: normal; }
+  .ascii-body {
+    margin: 0; padding: var(--sp-6) var(--sp-4);
+    font: 400 clamp(9px, 1.7vw, 13px)/1.35 var(--font-mono);
+    color: var(--term-green);
+    text-align: center; overflow-x: auto;
+  }
+  .ascii-body code { display: inline-block; text-align: left; white-space: pre; }
+
+  /* Compact "terminal cover" for cards */
+  .ascii-card {
+    background: var(--term-bg);
+    border: 1px solid #2a2a22;
+    border-radius: var(--radius-sm);
+    height: 116px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    margin-bottom: var(--sp-4);
+  }
+  .ascii-card-body {
+    margin: 0;
+    font: 400 6.5px/1.28 var(--font-mono);
+    color: var(--term-green);
+    white-space: pre;
+    opacity: .92;
+  }
+</style>

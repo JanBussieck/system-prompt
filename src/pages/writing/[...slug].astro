@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Post from '../../layouts/Post.astro';
+import { getAscii } from '../../lib/ascii';
 
 export async function getStaticPaths() {
   const posts = await getCollection('writing', ({ data }) => !data.draft);
@@ -9,7 +10,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const ascii = getAscii(post.id);
 ---
-<Post title={post.data.title} description={post.data.description} pubDate={post.data.pubDate} tags={post.data.tags}>
+<Post title={post.data.title} description={post.data.description} pubDate={post.data.pubDate} tags={post.data.tags} ascii={ascii}>
   <Content />
 </Post>

@@ -1,12 +1,7 @@
-      cheap to start   ·   expensive to own
+   build vs. buy   ·   cheap to start, expensive to own
 
-      BUILD                           BUY
-      █████
-      █████ 2am pages
-      █████ maintenance               ███
-      █████ edge cases                ███ demo
-      █████                           ███
-    ╍╍┻╍╍╍                          ╍╍┻╍╍
-         ╲                           ╱
-          ╲___________ ▲ __________╱
-                      ╱█╲
+   BUILD  ████████████████████████████
+          maintenance · edge cases · 2am pages, forever
+
+   BUY    ████████
+          integrate today · supported tomorrow

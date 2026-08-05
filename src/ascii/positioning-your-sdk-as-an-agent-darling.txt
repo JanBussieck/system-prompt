@@ -1,10 +1,10 @@
-      ___
-     [o_o]   ── reaches for ──►  ┌──────────────┐
-     /|█|\                       │  your-sdk  ★ │
-      / \                        │      <3      │
-   the agent                     └──────────────┘
+      _____
+     |o _ o|   >  reaches for  >   ┌──────────────┐
+     |_____|                       │  your-sdk  *  │
+      |___|                        │  <3          │
+     the agent                     └──────────────┘
 
-   picks the one it can          ┌────┐┌────┐┌────┐
-   reason about  ───────────►    │ ·· ││ ·· ││ ·· │
-                                 └────┘└────┘└────┘
-                                  dim   dim   dim
+     picks the tool it can         ┌────┐ ┌────┐ ┌────┐
+     reason about, first try       │ .. │ │ .. │ │ .. │
+                                    └────┘ └────┘ └────┘
+                                     the dim alternatives

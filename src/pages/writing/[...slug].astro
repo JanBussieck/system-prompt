@@ -12,6 +12,6 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const ascii = getAscii(post.id);
 ---
-<Post title={post.data.title} description={post.data.description} pubDate={post.data.pubDate} tags={post.data.tags} ascii={ascii}>
+<Post title={post.data.title} description={post.data.description} pubDate={post.data.pubDate} tags={post.data.tags} ascii={ascii} asciiId={post.id}>
   <Content />
 </Post>

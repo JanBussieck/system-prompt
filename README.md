@@ -53,6 +53,24 @@ featured: false                    # true = eligible for the home page (newest 3
 
 The MDX body below the frontmatter becomes the article content.
 
+### Post ASCII art — `src/ascii/<slug>.txt`
+
+Each writing post can have an ASCII illustration. Drop a plain-text file at
+`src/ascii/<slug>.txt` (matching the post's filename) and it renders
+automatically: a terminal panel at the top of the post and a compact "terminal
+cover" on the post cards. No frontmatter, no escaping — edit the `.txt` and it
+updates.
+
+The panel is **editable in the browser**: click `edit` to tweak the art live,
+`copy` to grab the current text (paste it back into the `.txt` to persist),
+`reset` to restore the original. In-browser edits are saved to `localStorage`
+per reader, so they never touch the source — the `.txt` file is always the
+source of truth.
+
+Use only monospace-safe characters (box-drawing `─│┌┐└┘├┤┬┴┼`, doubles
+`═║╔╗╚╝`, blocks `█▓▒░`, and ASCII). Avoid variable-width glyphs like
+`▶ ◀ ► ★ ● ○`, which break column alignment.
+
 ## Forms (Formspree)
 
 Both the newsletter and the apply-to-join form post to [Formspree](https://formspree.io).

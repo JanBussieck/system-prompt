@@ -1,8 +1,8 @@
   $ resolve: "image editing"
   ┌───────────────────────────────────────────┐
-  │  ►  1.  your-tool           ● default      │
-  │     2.  alt-lib-a           ○              │
-  │     3.  some-other-sdk      ○              │
-  │     4.  roll-your-own       ○              │
+  │  >  1.  your-tool          [x] default    │
+  │     2.  alt-lib-a          [ ]            │
+  │     3.  some-other-sdk     [ ]            │
+  │     4.  roll-your-own      [ ]            │
   └───────────────────────────────────────────┘
-      retrieved · cited · imported by default
+     retrieved · cited · imported by default

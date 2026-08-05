@@ -24,17 +24,15 @@ const featuredNotes = (await getCollection('field-notes', ({ data }) => data.fea
 <Base>
   <!-- Hero -->
   <section class="hero container">
-    <div class="hero-copy">
-      <p class="kicker">A monthly coffee chat · for people who market dev tools</p>
-      <h1>Your dev tool is being<br /> rewritten by whoever's<br /> <span class="hl">prompting.</span></h1>
-      <p class="lede">Marketing &amp; growth for dev tools in the age of agents — weathering vibecoding, catering to agents, and becoming the default an LLM reaches for.</p>
-      <div class="hero-cta">
-        <a class="btn btn--primary" href="/chats">Join a chat</a>
-        <a class="btn" href="/writing">Read the writing</a>
-      </div>
-    </div>
+    <p class="kicker">A monthly coffee chat · for people who market dev tools</p>
+    <h1>Growing SDKs &amp; dev tools in the age of <span class="hl">agents</span></h1>
+    <p class="lede">How to weather the vibecoders, cater to agents, and become the default an LLM reaches for.</p>
     <div class="hero-term">
       <Terminal lines={heroLines} />
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn--primary" href="/chats">Apply to join</a>
+      <a class="btn" href="/writing">Read the writing</a>
     </div>
   </section>
 
@@ -96,12 +94,13 @@ const featuredNotes = (await getCollection('field-notes', ({ data }) => data.fea
 </Base>
 
 <style>
-  .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--sp-16); align-items: center; padding-block: var(--sp-24) var(--sp-16); }
-  .hero h1 { font-size: clamp(2.4rem, 1.2rem + 4vw, 4rem); margin: var(--sp-4) 0 var(--sp-6); }
+  .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding-block: var(--sp-24) var(--sp-16); }
+  .hero .kicker { margin: 0; }
+  .hero h1 { font-size: clamp(2.4rem, 1.2rem + 4vw, 4rem); margin: var(--sp-4) 0 0; max-width: 18ch; }
   .hero .hl { color: var(--accent); }
-  .lede { font-size: var(--fs-lg); color: var(--ink-soft); max-width: 46ch; }
-  .hero-cta { display: flex; gap: var(--sp-3); margin-top: var(--sp-8); flex-wrap: wrap; }
-  .hero-term { justify-self: end; width: 100%; }
+  .lede { font-size: var(--fs-lg); color: var(--ink-soft); max-width: 52ch; margin: var(--sp-4) 0 0; }
+  .hero-term { width: 100%; display: flex; justify-content: center; margin-top: var(--sp-12); }
+  .hero-cta { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; margin-top: var(--sp-8); }
 
   .container-rule { max-width: 1080px; margin-inline: auto; }
   .section { padding-block: var(--sp-24); }
@@ -122,8 +121,7 @@ const featuredNotes = (await getCollection('field-notes', ({ data }) => data.fea
   .nl-wrap { max-width: 620px; }
 
   @media (max-width: 860px) {
-    .hero { grid-template-columns: 1fr; gap: var(--sp-12); padding-block: var(--sp-16) var(--sp-12); }
-    .hero-term { justify-self: stretch; }
+    .hero { padding-block: var(--sp-16) var(--sp-12); }
     .thesis-cols { grid-template-columns: 1fr; gap: var(--sp-6); }
     .section { padding-block: var(--sp-16); }
     .cta-panel { padding: var(--sp-8); }

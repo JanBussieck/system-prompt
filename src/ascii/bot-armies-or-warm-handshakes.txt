@@ -1,0 +1,9 @@
+   ┌───┐                               ┌───┐
+   │███│═══════════════════════════════│███│
+   └───┘                               └───┘
+    BOTS                                HUMANS
+    agents choosing you            the warm handshake
+    at machine scale               high-trust, 1-to-1
+
+           . . . the hollow middle . . .
+        generic content  ·  broad campaigns

@@ -1,0 +1,169 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionKicker from '../components/SectionKicker.astro';
+import { FORMSPREE } from '../config';
+
+const deliverables = [
+  {
+    h: 'A selection scorecard, across agents',
+    p: 'How often Claude Code, Codex, Cursor, and friends reach for your SDK — versus competitors and versus rolling their own — for the tasks that matter in your category.',
+  },
+  {
+    h: 'A first-try usage benchmark',
+    p: 'Not just whether you get mentioned: whether an agent ships working code with you on the first attempt. Run in clean sandboxes, graded automatically, reported as rates you can trust.',
+  },
+  {
+    h: 'An ablation-ranked remediation roadmap',
+    p: 'We change one lever at a time — llms.txt, an MCP server, an example, an error message — and measure the lift. You get a prioritized list of moves with the numbers attached.',
+  },
+  {
+    h: 'A re-test, so you can prove the delta',
+    p: 'After remediation we re-run the battery. The before/after is yours to publish, take to your board, or quietly enjoy as your selection share climbs.',
+  },
+];
+
+const steps = [
+  ['01', 'Scope', 'We agree on the task categories that matter for your SDK and the agents worth testing.'],
+  ['02', 'Benchmark', 'We run a task battery through real coding agents in reproducible sandboxes, tool-agnostic (selection) and tool-specified (usage).'],
+  ['03', 'Ablate', 'We isolate what moves the numbers by changing one lever at a time — the difference between a hunch and a cause.'],
+  ['04', 'Report + remediate', 'You get the scorecard, the ranked roadmap, and hands-on help shipping the highest-leverage fixes.'],
+];
+---
+<Base title="Agent Readiness Audit" description="Find out whether coding agents pick and correctly use your SDK — and exactly which changes will move the numbers.">
+  <section class="container audit">
+    <div class="au-hero">
+      <SectionKicker>Work with us · founding pilot</SectionKicker>
+      <h1>Do coding agents pick your SDK — and get it working?</h1>
+      <p class="lede">Agents now choose and wire up developer tools on the buyer's behalf. The Agent Readiness Audit measures whether yours gets selected and used correctly across Claude Code, Codex, and the rest — and shows you the specific changes that move it.</p>
+      <div class="au-cta">
+        <a class="btn btn--primary" href="#inquire">Apply for a pilot</a>
+        <a class="btn" href="/writing/the-agent-readiness-toolkit">See the toolkit</a>
+      </div>
+    </div>
+
+    <div class="au-section">
+      <SectionKicker>What you get</SectionKicker>
+      <div class="au-grid">
+        {deliverables.map((d) => (
+          <div class="au-card">
+            <h3>{d.h}</h3>
+            <p>{d.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="au-section">
+      <SectionKicker>How it works</SectionKicker>
+      <ol class="au-steps">
+        {steps.map(([n, h, p]) => (
+          <li>
+            <span class="au-num">{n}</span>
+            <div>
+              <h3>{h}</h3>
+              <p>{p}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="au-section au-who">
+      <SectionKicker>Who it's for</SectionKicker>
+      <p>Dev-tool and SDK companies — APIs, SDKs, and developer platforms — that suspect agents are quietly routing around them, or that want to be the default an agent reaches for before a competitor is. We go deep in creative, media, document, and infrastructure tooling first.</p>
+    </div>
+
+    <div class="au-section au-pricing">
+      <SectionKicker>Founding-pilot pricing</SectionKicker>
+      <div class="au-tiers">
+        <div class="au-tier">
+          <p class="au-tier-name">Audit</p>
+          <p class="au-price">from $12k<span>one-time</span></p>
+          <p class="au-tier-desc">Scorecard, first-try benchmark, and ablation-ranked roadmap for one SDK across the agents that matter.</p>
+        </div>
+        <div class="au-tier au-tier--feature">
+          <p class="au-tier-name">Audit + Monitoring</p>
+          <p class="au-price">+ from $3k<span>/ month</span></p>
+          <p class="au-tier-desc">Everything in the audit, plus a monthly re-run as models change and ongoing remediation. Agent behavior drifts; your readiness shouldn't.</p>
+        </div>
+      </div>
+      <p class="au-fine">Founding-pilot rates for the first cohort. Exact scope and price set on a scoping call.</p>
+    </div>
+
+    <div class="au-section" id="inquire">
+      <SectionKicker>Apply for a pilot</SectionKicker>
+      <h2>Tell us about your SDK.</h2>
+      <p class="au-intro">A few details and we'll come back with whether you're a fit for the founding cohort and what a first run would look like.</p>
+      <form class="au-form" action={FORMSPREE.audit} method="POST" data-formspree data-success="Got it — we'll be in touch about a scoping call.">
+        <div class="au-fields">
+          <label class="field"><span>Name</span><input name="name" type="text" required autocomplete="name" placeholder="Ada Lovelace" /></label>
+          <label class="field"><span>Work email</span><input name="email" type="email" required autocomplete="email" placeholder="you@company.dev" /></label>
+          <label class="field"><span>Company</span><input name="company" type="text" required placeholder="Your dev tool / SDK" /></label>
+          <label class="field"><span>Docs or repo URL</span><input name="url" type="url" placeholder="https://docs.yourtool.dev" /></label>
+        </div>
+        <label class="field field--full"><span>What do you want to know?</span><textarea name="message" rows="4" placeholder="e.g. Do agents pick us over [competitor]? Does our quickstart work first-try in Claude Code and Codex?"></textarea></label>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha" />
+        <div class="au-actions">
+          <button class="btn btn--primary" type="submit">Apply for a pilot</button>
+          <p class="au-msg" role="status" aria-live="polite" hidden></p>
+        </div>
+        <p class="au-formfine">We read every application. Submissions handled via Formspree.</p>
+      </form>
+    </div>
+  </section>
+</Base>
+<style>
+  .audit { padding-block: var(--sp-16); }
+  .au-hero h1 { max-width: 18ch; margin-top: var(--sp-4); }
+  .au-hero .lede { font-size: var(--fs-lg); color: var(--ink-soft); max-width: 60ch; }
+  .au-cta { display: flex; gap: var(--sp-3); margin-top: var(--sp-8); flex-wrap: wrap; }
+
+  .au-section { padding-top: var(--sp-16); margin-top: var(--sp-16); border-top: var(--border); }
+  .au-section > h2 { margin-top: var(--sp-4); }
+
+  .au-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); margin-top: var(--sp-8); }
+  .au-card { border: var(--border); border-radius: var(--radius); padding: var(--sp-6); background: var(--surface); }
+  .au-card h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-2); }
+  .au-card p { color: var(--ink-soft); margin: 0; font-size: var(--fs-sm); }
+
+  .au-steps { list-style: none; margin: var(--sp-8) 0 0; padding: 0; display: grid; gap: var(--sp-6); }
+  .au-steps li { display: flex; gap: var(--sp-4); align-items: flex-start; }
+  .au-num { font-family: var(--font-mono); color: var(--accent); font-size: var(--fs-sm); padding-top: .2rem; }
+  .au-steps h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-1); }
+  .au-steps p { color: var(--ink-soft); margin: 0; max-width: 60ch; }
+
+  .au-who p { color: var(--ink-soft); max-width: 62ch; font-size: var(--fs-lg); margin-top: var(--sp-6); }
+
+  .au-tiers { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); margin-top: var(--sp-8); }
+  .au-tier { border: var(--border); border-radius: var(--radius); padding: var(--sp-8); background: var(--surface); }
+  .au-tier--feature { border-color: var(--accent); }
+  .au-tier-name { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin: 0; }
+  .au-price { font-size: var(--fs-2xl); letter-spacing: -.02em; margin: var(--sp-2) 0 var(--sp-3); font-weight: 600; }
+  .au-price span { font-size: var(--fs-sm); color: var(--ink-faint); font-weight: 400; margin-left: .4rem; }
+  .au-tier-desc { color: var(--ink-soft); margin: 0; font-size: var(--fs-sm); }
+  .au-fine { color: var(--ink-faint); font-size: var(--fs-xs); margin-top: var(--sp-4); }
+
+  .au-intro { color: var(--ink-soft); max-width: 56ch; margin-bottom: var(--sp-8); }
+  .au-form { border: var(--border); border-radius: var(--radius); padding: var(--sp-8); background: var(--surface); max-width: 760px; }
+  .au-fields { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+  .field { display: flex; flex-direction: column; gap: var(--sp-2); }
+  .au-fields .field { margin-top: 0; }
+  .field--full { margin-top: var(--sp-4); }
+  .field > span { font: 500 var(--fs-sm)/1 var(--font-sans); color: var(--ink-soft); }
+  .au-form input, .au-form textarea {
+    padding: .72rem .9rem; border: var(--border); border-radius: var(--radius-sm);
+    background: var(--bg); color: var(--ink); font: 400 var(--fs-base)/1.4 var(--font-sans); width: 100%;
+  }
+  .au-form input::placeholder, .au-form textarea::placeholder { color: var(--ink-faint); }
+  .au-form textarea { resize: vertical; }
+  .gotcha { position: absolute; left: -9999px; width: 1px; height: 1px; }
+  .au-actions { display: flex; align-items: center; gap: var(--sp-4); margin-top: var(--sp-6); flex-wrap: wrap; }
+  .au-msg { margin: 0; font-size: var(--fs-sm); }
+  .au-msg.ok { color: var(--term-green); }
+  .au-msg.err { color: #c0402a; }
+  .au-formfine { margin: var(--sp-4) 0 0; font-size: var(--fs-xs); color: var(--ink-faint); }
+
+  @media (max-width: 720px) {
+    .au-grid, .au-tiers, .au-fields { grid-template-columns: 1fr; }
+  }
+</style>

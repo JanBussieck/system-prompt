@@ -1,0 +1,9 @@
+  make-your-sdk-agent-ready.sh
+  ┌─────────────────────────────────┐
+  │  [x] llms.txt                   │
+  │  [x] one clean path in the docs │
+  │  [x] MCP server — let it act    │
+  │  [x] typed, runnable examples   │
+  │  [ ] measured + benchmarked     │
+  └─────────────────────────────────┘
+     legible > loud

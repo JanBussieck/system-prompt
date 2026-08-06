@@ -1,0 +1,35 @@
+---
+title: "The Agent-Readiness Toolkit"
+description: "The standards, platforms, and scorecards worth knowing to make your SDK legible, usable, and default-worthy to coding agents — from llms.txt and MCP to Sapient and Auth0's Agent Experience Score."
+pubDate: 2026-08-04
+tags: ["agents", "tooling", "resources"]
+featured: true
+---
+
+If [the agent's pick happens in four layers](/writing/how-coding-agents-choose-your-sdk), the good news is you don't have to build the machinery for each one from scratch. A small ecosystem has appeared to help dev tools become legible, actionable, and measurable to coding agents. Here's the practitioner's map — what each thing is good for, and where it stops.
+
+## Make yourself legible
+
+- **`llms.txt`** — the emerging convention for a machine-readable index of your docs, pointing agents at the canonical, clean version of your reference. It's the cheapest high-leverage move on Layer 2, and it's just a file. Ship one.
+- **Docs platforms that speak agent** — tooling like **Mintlify** now auto-generates an `llms.txt`, can spin up an MCP server from your docs, and reports AI-referral analytics. If your docs already live there, a lot of Layer 2 is a config toggle away.
+
+## Serve your docs to agents at runtime
+
+- **Context7** — serves up-to-date, version-correct library docs to coding agents over MCP, so the model works against current reality instead of its stale training prior. Being well-represented here is a direct hedge against a bad Layer 1.
+
+## Let agents *act*, not just read
+
+- **MCP (Model Context Protocol)** — the standard that turns your tool from a library into a capability an agent can call. This is the Layer 3 move, and it's the one most likely to change your selection share outright.
+- **SDK generators — Speakeasy, Stainless** — generate typed, idiomatic SDKs from an OpenAPI spec, and increasingly an MCP server alongside them. Useful when your surface is an API and you want agent-ready clients without hand-maintaining six languages.
+
+## Measure, benchmark, and score
+
+- **Sapient** — the first platform built specifically for this: it tracks your visibility across coding agents (Claude Code, Codex, Cursor, and more), runs a "Devtool Arena" leaderboard on agent-readiness, and audits docs. Strong for *am I visible and mentioned*; lighter on *does the agent ship working code with me*.
+- **Auth0's Agent Experience Score** — less a product than a useful public rubric for how agent-friendly a product is. Worth reading as a checklist even if you never adopt it.
+- **The research benchmarks — MCP-Bench, MCPToolBench++** — academic evaluations of whether agents use MCP tools correctly. Not about your SDK specifically, but the grading methodology is exactly what a serious internal eval should borrow.
+
+## Where the toolkit runs out
+
+Notice what's well-covered and what isn't. Legibility (llms.txt, docs) and visibility (Sapient) have tools. **Usage success** — does the agent actually produce working code with your SDK on the first try, and which specific change caused the lift — is still mostly a build-it-yourself eval, run in a sandbox across real agents with a task battery and automated grading. That gap is precisely where the leverage (and the honest answer to "did it work") lives.
+
+If you'd rather not stand up that harness yourself, that's the thing we do — see the [Agent Readiness Audit](/audit). Either way: start with `llms.txt` this week, ship an MCP server this quarter, and measure before and after. The tools exist. Most teams just haven't picked them up.

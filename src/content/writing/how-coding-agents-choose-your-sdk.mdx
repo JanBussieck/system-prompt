@@ -1,0 +1,31 @@
+---
+title: "How Coding Agents Actually Choose Your SDK"
+description: "The pick happens in four layers — a training-data prior, runtime docs, tools it can run, and whether the happy path holds. Most teams optimize only the first."
+pubDate: 2026-08-01
+tags: ["agents", "selection", "positioning"]
+featured: true
+---
+
+Every SDK decision used to begin with a human on your homepage. A growing share of them now begin with a coding agent, mid-task, deciding which library to reach for — and the human may never see the runner-up. If you want to be the default, you have to understand how that choice actually gets made. It isn't one decision. It's four layers, and each is something you can win or lose independently.
+
+## Layer 1 — the training-data prior
+
+Before an agent reads anything, it already has opinions. If your library existed, was popular, and was well-documented before the model's training cutoff, you start with a baseline advantage: the model "knows" you and will suggest you unprompted. This is the layer everyone feels and almost no one can move — you can't retrain someone else's model. It's also the slowest and least fair layer, which is exactly why the other three matter so much.
+
+## Layer 2 — runtime docs and retrieval
+
+Most agents don't run on memory alone. They fetch. An `llms.txt`, a structured reference, a docs site the agent can read, a retrieval index — these are what the model consults *at decision time*, and unlike the training prior, you can change them this quarter. A newer library with clean, machine-legible docs can leapfrog an incumbent that's coasting on Layer 1, because at the moment of choice the agent is reading current reality, not stale weights.
+
+## Layer 3 — tools it can act through
+
+There's a categorical difference between a library an agent *imports and hopes it wrote correctly* and a capability it can *act through* directly. An MCP server or a first-class CLI moves you from the first category to the second. When an agent can create the resource, run the migration, or wire the config by calling your tool — rather than hand-writing code against it — you stop being one option among many and become the path of least resistance.
+
+## Layer 4 — does the happy path hold
+
+Getting picked is worthless if the first attempt fails. When an agent chooses you and the quickstart doesn't run, the error is inscrutable, or the API it "remembered" was renamed two versions ago, it backs out and reaches for whatever feels safer next time — and the failure gets blamed on you. First-try success and clean, self-correcting error messages are a selection lever, not just a DX nicety. The tool that reliably works on the first try is the tool that keeps getting chosen.
+
+## Why most teams lose the layers they could win
+
+Here's the pattern across the industry: teams pour effort into Layer 1 (hope they made it into the training data) and quietly ignore Layers 2 through 4 — the ones they can actually control. That's the whole opening. A smaller tool with an `llms.txt`, an MCP server, runnable examples, and error messages an agent can recover from routinely beats a dominant player that's resting on brand recognition the model happened to absorb.
+
+The uncomfortable, useful conclusion: your position in the agent's decision is mostly decided by your docs, your types, your tooling, and your error surface — artifacts that live in engineering, not in a campaign. Audit each layer honestly. Layer 1 you inherit. Layers 2, 3, and 4 you can win starting today, and almost everyone is leaving them on the table.

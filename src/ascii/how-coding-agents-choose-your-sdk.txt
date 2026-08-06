@@ -1,0 +1,9 @@
+     the agent decides ─┐
+                        v
+   ┌───────────────────────────────┐
+   │  L4 · errors & recovery       │
+   │  L3 · MCP & runnable tools    │
+   │  L2 · docs & llms.txt         │
+   │  L1 · training-data prior     │
+   └───────────────────────────────┘
+      most teams tune only L1

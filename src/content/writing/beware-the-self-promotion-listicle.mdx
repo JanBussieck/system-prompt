@@ -46,6 +46,52 @@ If you want your comparison content mined *and* trusted, not just mined:
 6. **Replace superlatives with conditional recommendations.** Not "the most complete" — "best if you need X; if you need Y, pick Z."
 7. **Keep it current,** with a visible last-updated date.
 
+## Audit your own before an LLM does
+
+Reading your comparison page charitably is the trap — you know what you meant. An LLM doesn't, and it's the reader that matters now. So hand the job to one. Paste this into Claude Code (pointed at the page or the file) or any capable model, and let it grade you the way the systems answering "what's the best X?" actually will.
+
+```text
+You are auditing a vendor-authored comparison article ("listicle") the way an
+LLM does when answering a user's "what's the best X?" question. Predict whether
+an AI assistant would TRUST AND CITE this page, or MINE ITS FACTS AND DISCOUNT
+its recommendation. Be adversarial — read it as a skeptic, not as the author.
+
+INPUTS
+- Article: <URL or pasted text>
+- Publisher (author's company): <YOUR COMPANY>
+- Author's product in the list: <YOUR PRODUCT>
+
+Score each criterion PASS / PARTIAL / FAIL. Quote the exact evidence and say how
+an LLM would read it.
+1. Disclosure — does it state up front that the author builds one of the tools?
+2. Honest cons — does the author's own product get real cons, including a
+   "when NOT to choose us" that names a better-fit competitor per scenario?
+3. Ordering — ordered by use case or alphabetically, not author-first?
+4. Symmetric criteria — are neutral criteria stated before the list and applied
+   with the same fields and depth to every entry, the author's included?
+5. Falsifiability — are claims specific and checkable (pricing bands, benchmarks,
+   feature matrices, customer quotes, dates) rather than adjectives?
+6. Conditional recommendations — superlatives ("the most complete") replaced with
+   use-case-tied picks ("best if X; if you need Y, choose Z")?
+7. Freshness — a visible last-updated date?
+
+Then flag the two self-disqualifiers:
+- SELF-PLACEMENT: is the author's product ranked #1, given the most coverage, or
+  the only entry with no cons?
+- SELF-DISTRIBUTION: are there identical-title copies of this piece on the
+  company's own channels (its subreddit, Medium, etc.) posing as independent
+  corroboration? (These carry no extra weight — an LLM treats them as one source.)
+
+OUTPUT
+- A table: criterion -> verdict -> evidence quote.
+- Verdict: would an LLM cite this as a neutral source, or mine-and-discount it?
+  One line of reasoning.
+- The 3 highest-leverage fixes, each as a concrete before/after edit.
+- A drafted "When NOT to choose <YOUR PRODUCT>" section if one is missing.
+```
+
+Run it on your own best comparison page first. If the verdict is "mine-and-discount," you've just found why you're the raw material for a competitor's recommendation instead of the recommendation.
+
 ## The reframe
 
 A listicle isn't a place to win. It's a place to be *useful* — so useful, and so fair, that the system answering the world's "what's the best X?" questions decides your page is the one worth quoting. Be upfront about when you're the wrong choice. When you make a claim, prove it: a benchmark, a customer quote, a real number. Sell less, get cited more. In a market where the buyer is increasingly a model, humility isn't a soft virtue. It's distribution.

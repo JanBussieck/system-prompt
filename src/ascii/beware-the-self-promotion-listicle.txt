@@ -1,0 +1,8 @@
+   your "best X tools" post        an LLM reads it as
+   ------------------------        ------------------
+   1. US  *  (no cons)      ->     self-praise   dropped
+   2. rival  (one con)      ->     comparison    kept
+   3. rival  (one con)      ->     comparison    kept
+   + reposted to r/OurBrand ->     same source   no weight
+   ------------------------------------------------------
+   honest · disclosed · provable  ->  cited for the category

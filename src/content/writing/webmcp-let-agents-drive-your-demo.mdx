@@ -1,0 +1,68 @@
+---
+title: "WebMCP: Let the Agent Drive Your Demo"
+description: "A proposed web standard lets your website hand typed, callable tools to agents in the browser. For dev-tool and SDK companies, the highest-leverage place to start is the demo."
+pubDate: 2026-10-26
+tags: ["agents", "webmcp", "tooling"]
+featured: false
+---
+
+Your interactive demo was built for human hands. A visitor loads the playground, drags a slider, exports a result, and leaves convinced. An agent visiting the same page gets none of that. It takes a screenshot, guesses where the buttons are, and usually gives up or hallucinates what your product does from the marketing copy around the iframe.
+
+That matters more than it used to, because a growing share of your evaluation traffic isn't human. It's a buyer's research agent comparing you against two competitors, or a coding agent mid-task deciding [which SDK to reach for](/writing/how-coding-agents-choose-your-sdk). WebMCP is the first serious attempt to fix this at the browser level, and dev-tool companies are unusually well positioned to exploit it.
+
+## What WebMCP actually is
+
+WebMCP is a proposed web standard, driven by the Chrome team with Microsoft involved on the Edge side, that lets any webpage register structured tools an agent can call. Instead of an agent parsing your DOM, the page says: here are the things I can do, here are the typed parameters, call me. Chrome shipped an early preview in February 2026 and moved it into an origin trial with Chrome 149; Edge runs its own trial from Edge 150 through March 2027. Safari has formally opposed the proposal and Firefox is neutral, so as of today this is an experiment, not a shipped platform feature.
+
+The API is small. You register a tool on `document.modelContext` with a name, a description, a JSON Schema for inputs, and an async callback:
+
+```js
+const mc = document.modelContext ?? navigator.modelContext;
+
+await mc.registerTool({
+  name: 'export_design',
+  description: 'Render the current playground scene and return a PNG export URL.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      format: { type: 'string', enum: ['png', 'pdf'] },
+      width: { type: 'number', description: 'Output width in pixels' }
+    },
+    required: ['format']
+  },
+  execute: async ({ format, width }) => {
+    const url = await playground.export({ format, width });
+    return JSON.stringify({ url });
+  }
+});
+```
+
+One warning if you read implementation guides from early 2026: the API originally lived on `navigator.modelContext`, and Chrome 150 deprecated that name in favor of `document.modelContext`. The old name still runs during the trial, which makes the churn easy to miss. Feature-detect both, and expect more renames before this stabilizes. There's also a declarative variant that turns an annotated HTML form into a tool, but its spec text is still a TODO.
+
+Who consumes these tools? Any agent with hands on the browser: agentic browsers, browser-use extensions, and the in-browser assistants Google and Microsoft are building into Chrome and Edge. Early Chrome benchmarks claim agents complete tasks several times faster on WebMCP pages than by driving the same page visually. The number will move; the direction won't surprise anyone who has watched an agent hunt for a button.
+
+## Why the demo is the right surface
+
+For most websites, WebMCP's pitch is "agents can use your checkout." For a dev-tool company the pitch is better than that, because your demo *is* your product argument. The playground, the sandbox, the "try it live" embed: these exist to prove the product works before anyone signs up. An agent that can actually drive them can collect that proof on behalf of its human.
+
+Think about what the agent walks away with. If your playground exposes `load_template`, `apply_edit`, and `export_design` as tools, a research agent can run your advertised happy path end to end and report back "I loaded a template, changed the headline, and got a valid PDF back in eleven seconds." That's not a claim from your homepage. That's evidence the agent generated itself, and agents weight their own observations heavily. A brochure can't do that.
+
+A few tools worth shipping on a dev-tool site, roughly in order of leverage:
+
+Playground actions. Whatever a human can click in your demo, register as tools. This is the core move, and it usually maps onto functions your demo already has.
+
+A snippet generator. A `get_working_example` tool that takes a use case and a framework and returns a current, version-correct code sample. Agents assembling an integration plan will call this instead of trusting their training prior, which quietly fixes your stale-docs problem at the moment of choice.
+
+A quickstart configurator. Take the three questions your onboarding asks (framework, language, license tier) and return the exact install commands and config block. First-try success is a selection lever, and this tool front-loads it.
+
+Plan and pricing lookup. Unglamorous, but buyer-side agents ask about pricing constantly, and a typed answer beats whatever they scrape from your pricing table.
+
+## Caveats before you commit a sprint
+
+WebMCP does not replace a remote MCP server. Your MCP server reaches agents in editors and CI, where the coding actually happens; WebMCP reaches agents visiting your website. They share a mental model and little else. If you have neither, [the remote server comes first](/writing/the-agent-readiness-toolkit).
+
+The trial mechanics are real friction. A production site needs an origin trial token, behavior differs across Chrome versions, and the Permissions Policy (`tools`, default `self`) needs attention if your demo lives in an iframe, which needs `allow="tools"` to register anything.
+
+And treat tool registration as attack surface. Tools run with the page's authority, so keep them scoped to what the demo can already do, mark anything sensitive with the annotations the spec provides, and never expose a tool you wouldn't put behind a public button.
+
+WebMCP in October 2026 is where `llms.txt` was in early 2025: experimental, cheap to adopt if your demo is already componentized, and a near-certain line item in every agent-readiness checklist within a year. Wiring five tools into an existing playground is days of work, not a quarter. Do it while it still counts as being early, and if you want to know whether agents can get through your funnel at all today, that's what the [Agent Readiness Audit](/audit) measures.

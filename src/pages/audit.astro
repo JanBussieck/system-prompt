@@ -6,35 +6,35 @@ import { FORMSPREE } from '../config';
 const deliverables = [
   {
     h: 'A selection scorecard, across agents',
-    p: 'How often Claude Code, Codex, Cursor, and friends reach for your SDK — versus competitors and versus rolling their own — for the tasks that matter in your category.',
+    p: 'How often Claude Code, Codex, Cursor, and the rest reach for your SDK on the tasks that matter in your category, measured against your competitors and against rolling their own.',
   },
   {
     h: 'A first-try usage benchmark',
-    p: 'Not just whether you get mentioned: whether an agent ships working code with you on the first attempt. Run in clean sandboxes, graded automatically, reported as rates you can trust.',
+    p: 'Mentions are easy to count. This measures whether an agent ships working code with you on the first attempt, run in clean sandboxes and graded automatically.',
   },
   {
     h: 'An ablation-ranked remediation roadmap',
-    p: 'We change one lever at a time — llms.txt, an MCP server, an example, an error message — and measure the lift. You get a prioritized list of moves with the numbers attached.',
+    p: 'We change one lever at a time (an llms.txt, an MCP server, an example, an error message) and measure the lift. You get a prioritized list of moves with the numbers attached.',
   },
   {
     h: 'A re-test, so you can prove the delta',
-    p: 'After remediation we re-run the battery. The before/after is yours to publish, take to your board, or quietly enjoy as your selection share climbs.',
+    p: 'After remediation we re-run the battery. The before and after is yours to publish, take to your board, or quietly enjoy as your selection share climbs.',
   },
 ];
 
 const steps = [
   ['01', 'Scope', 'We agree on the task categories that matter for your SDK and the agents worth testing.'],
   ['02', 'Benchmark', 'We run a task battery through real coding agents in reproducible sandboxes, tool-agnostic (selection) and tool-specified (usage).'],
-  ['03', 'Ablate', 'We isolate what moves the numbers by changing one lever at a time — the difference between a hunch and a cause.'],
+  ['03', 'Ablate', 'We isolate what moves the numbers by changing one lever at a time, so you end up with a cause rather than a hunch.'],
   ['04', 'Report + remediate', 'You get the scorecard, the ranked roadmap, and hands-on help shipping the highest-leverage fixes.'],
 ];
 ---
-<Base title="Agent Readiness Audit" description="Find out whether coding agents pick and correctly use your SDK — and exactly which changes will move the numbers.">
+<Base title="Agent Readiness Audit" description="Find out whether coding agents pick and correctly use your SDK, and exactly which changes will move the numbers.">
   <section class="container audit">
     <div class="au-hero">
       <SectionKicker>Work with us · founding pilot</SectionKicker>
-      <h1>Do coding agents pick your SDK — and get it working?</h1>
-      <p class="lede">Agents now choose and wire up developer tools on the buyer's behalf. The Agent Readiness Audit measures whether yours gets selected and used correctly across Claude Code, Codex, and the rest — and shows you the specific changes that move it.</p>
+      <h1>Do coding agents pick your SDK, and get it working?</h1>
+      <p class="lede">Agents now choose and wire up developer tools on the buyer's behalf. The Agent Readiness Audit measures whether yours gets selected and used correctly across Claude Code, Codex, and the rest, then shows you the specific changes that move it.</p>
       <div class="au-cta">
         <a class="btn btn--primary" href="#inquire">Apply for a pilot</a>
         <a class="btn" href="/writing/the-agent-readiness-toolkit">See the toolkit</a>
@@ -70,7 +70,7 @@ const steps = [
 
     <div class="au-section au-who">
       <SectionKicker>Who it's for</SectionKicker>
-      <p>Dev-tool and SDK companies — APIs, SDKs, and developer platforms — that suspect agents are quietly routing around them, or that want to be the default an agent reaches for before a competitor is. We go deep in creative, media, document, and infrastructure tooling first.</p>
+      <p>APIs, SDKs, and developer platforms that suspect agents are quietly routing around them, or that want to be the default an agent reaches for before a competitor gets there. We go deep in creative, media, document, and infrastructure tooling first.</p>
     </div>
 
     <div class="au-section au-pricing">
@@ -84,7 +84,7 @@ const steps = [
         <div class="au-tier au-tier--feature">
           <p class="au-tier-name">Audit + Monitoring</p>
           <p class="au-price">+ from $3k<span>/ month</span></p>
-          <p class="au-tier-desc">Everything in the audit, plus a monthly re-run as models change and ongoing remediation. Agent behavior drifts; your readiness shouldn't.</p>
+          <p class="au-tier-desc">Everything in the audit, plus a monthly re-run as models change and ongoing remediation. Agent behavior drifts, so the numbers are worth re-checking.</p>
         </div>
       </div>
       <p class="au-fine">Founding-pilot rates for the first cohort. Exact scope and price set on a scoping call.</p>
@@ -94,7 +94,7 @@ const steps = [
       <SectionKicker>Apply for a pilot</SectionKicker>
       <h2>Tell us about your SDK.</h2>
       <p class="au-intro">A few details and we'll come back with whether you're a fit for the founding cohort and what a first run would look like.</p>
-      <form class="au-form" action={FORMSPREE.audit} method="POST" data-formspree data-success="Got it — we'll be in touch about a scoping call.">
+      <form class="au-form" action={FORMSPREE.audit} method="POST" data-formspree data-success="Got it. We'll be in touch about a scoping call.">
         <div class="au-fields">
           <label class="field"><span>Name</span><input name="name" type="text" required autocomplete="name" placeholder="Ada Lovelace" /></label>
           <label class="field"><span>Work email</span><input name="email" type="email" required autocomplete="email" placeholder="you@company.dev" /></label>

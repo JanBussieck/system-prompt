@@ -7,11 +7,11 @@ import SectionKicker from '../../components/SectionKicker.astro';
 const notes = (await getCollection('field-notes'))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
-<Base title="Field Notes" description="How the dev tools that get picked are positioning for a world where the buyer is a model.">
+<Base title="Field Notes" description="How the dev tools that get picked position themselves now that the buyer is often a model.">
   <section class="container fn-index">
     <SectionKicker>Field notes</SectionKicker>
     <h1>How the tools that get picked position for the agent era.</h1>
-    <p class="lede">Short, opinionated reads on real dev-tool companies and the moves that make them the default. Outside analysis, not endorsements.</p>
+    <p class="lede">Short, opinionated reads on real dev-tool companies and the moves that make them the default. Written from the outside, and nothing here is an endorsement.</p>
     <div class="grid">
       {notes.map((note) => <FieldNoteCard note={note} />)}
     </div>

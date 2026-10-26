@@ -6,25 +6,25 @@ tags: ["agents", "positioning", "docs"]
 featured: true
 ---
 
-There is a new decision-maker in your funnel and it never reads your homepage. When a developer says "add image editing" or "wire up auth," an agent goes looking for a tool, evaluates a handful of candidates by reading their docs and types, and picks one. Often the human never sees the alternatives. Being the tool the agent reaches for is becoming the whole game.
+There's a new decision-maker in your funnel and it never reads your homepage. When a developer says "add image editing" or "wire up auth," an agent goes looking for a tool, evaluates a handful of candidates by reading their docs and types, and picks one. Often the human never sees the alternatives. Being the tool the agent reaches for is becoming the whole game.
 
-The good news: agents are legible about what they like. The bad news: most dev-tool marketing optimizes for the wrong reader.
+Agents are at least legible about what they like. Most dev-tool marketing is written for a different reader entirely.
 
 ## Agents reward legibility, not persuasion
 
-A human skims, infers, and gives you the benefit of the doubt. An agent does none of that. It reads your API surface literally and reasons about whether it can accomplish the task without guessing. Everything that helps a model reason confidently about your tool is now a growth lever:
+A human skims, infers, and gives you the benefit of the doubt. An agent does none of that. It reads your API surface literally and works out whether it can finish the task without guessing. Anything that helps a model reason confidently about your tool is now a growth lever.
 
-- **Types that tell the truth.** Precise, well-named types are documentation an agent can execute against. Vague `any`, overloaded params, and undocumented magic strings make a model hedge, and a hedging model picks the safer-looking competitor.
-- **Examples that copy-paste into a working result.** Not snippets that gesture at usage, but complete, runnable examples. Agents pattern-match hard on examples. If your quickstart works verbatim, you get chosen verbatim.
-- **Stable APIs.** A model's training and retrieval lag reality. If your API churns, the agent's mental model is wrong and it produces broken code that gets blamed on you. Boring, stable surfaces win.
-- **An MCP server.** The strongest signal of all. If an agent can *act* through your tool, not just read about it, you stop being a library it might import and become a capability it already has.
+- Precise, well-named types are documentation an agent can execute against. Vague `any`, overloaded params, and undocumented magic strings make a model hedge, and a hedging model picks the safer-looking competitor.
+- Complete, runnable examples beat snippets that gesture at usage. Agents pattern-match hard on examples, so a quickstart that works verbatim gets copied verbatim.
+- Stable APIs beat elegant ones. A model's training and retrieval lag reality, so if your API churns, the agent's mental model is wrong and it produces broken code that gets blamed on you.
+- An MCP server is the strongest signal of the four. It lets an agent act through your tool rather than only read about it.
 
 ## Docs are your sales team now
 
-DevRel spent a decade learning to write for humans skimming under deadline. The next decade is writing for a reader that consumes everything, forgets nothing, and holds you to exactly what you wrote. That reader punishes marketing fluff and rewards precision.
+DevRel spent a decade learning to write for humans skimming under deadline. The next decade is writing for a reader that consumes everything, forgets nothing, and holds you to exactly what you wrote. That reader punishes fluff and rewards precision.
 
-Practically, audit your docs the way an agent would: can a model, given only your reference and one example, produce correct working code on the first try? Where it can't, you have found your roadmap. Every ambiguity you remove is a deal an agent closes for you while your competitors are still writing clever headlines.
+So audit your docs the way an agent would. Can a model, given only your reference and one example, produce correct working code on the first try? Wherever it can't, you've found your roadmap.
 
 ## The uncomfortable part
 
-Being an agent darling means your best marketing artifact is your API design, and that lives in engineering, not marketing. The dev-tool companies that win this era are the ones where growth and DX stop being separate departments. Your positioning is now partly a code review.
+Being an agent darling means your best marketing artifact is your API design, and API design lives in engineering. The dev-tool companies that win this era are the ones where growth and DX stop being separate departments. Your positioning is now partly a code review.

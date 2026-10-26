@@ -9,7 +9,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
 
 const heroLines = [
   'is your SDK an agent darling?',
-  "build vs. buy — who's actually cheaper now?",
+  "build vs. buy: who's actually cheaper now?",
   "how do you become the LLM's default import?",
 ];
 
@@ -26,7 +26,7 @@ const featuredNotes = (await getCollection('field-notes', ({ data }) => data.fea
   <section class="hero container">
     <p class="kicker">A monthly coffee chat · for people who market dev tools</p>
     <h1>Growing SDKs &amp; dev tools in the age of <span class="hl">agents</span></h1>
-    <p class="lede">How to weather the vibecoders, cater to agents, and become the default an LLM reaches for.</p>
+    <p class="lede">How to weather the vibecoders and become the default an LLM reaches for.</p>
     <div class="hero-term">
       <Terminal lines={heroLines} />
     </div>
@@ -44,8 +44,8 @@ const featuredNotes = (await getCollection('field-notes', ({ data }) => data.fea
     <div class="thesis">
       <h2>Generation got cheap. Being chosen got hard.</h2>
       <div class="thesis-cols">
-        <p>Vibecoding collapsed the cost of "just build it." The demo that used to take a sprint now takes a prompt — which means every default your product relied on is suddenly negotiable.</p>
-        <p>Increasingly, the thing evaluating your tool isn't a developer skimming your homepage. It's an agent reading your docs, your types, and your examples — and deciding whether you're the path of least resistance.</p>
+        <p>Vibecoding collapsed the cost of "just build it." The demo that used to take a sprint now takes a prompt, so every default your product relied on is suddenly negotiable.</p>
+        <p>More and more, the thing evaluating your tool isn't a developer skimming your homepage. It's an agent reading your docs and your types, working out whether you're the easiest way to finish the task.</p>
         <p>The tools that win the next decade get retrieved, cited, and imported by default. This is a room for the people figuring out how to make that happen.</p>
       </div>
     </div>
@@ -69,7 +69,7 @@ const featuredNotes = (await getCollection('field-notes', ({ data }) => data.fea
         <SectionKicker>Field notes</SectionKicker>
         <a class="arrow-link" href="/field-notes">All field notes <span class="arw">→</span></a>
       </div>
-      <p class="section-sub">How the tools that get picked are positioning for a world where the buyer is a model.</p>
+      <p class="section-sub">A look at how the tools that get picked position themselves now that the buyer is often a model.</p>
       <div class="grid">{featuredNotes.map((note) => <FieldNoteCard note={note} />)}</div>
     </section>
   )}
@@ -79,7 +79,7 @@ const featuredNotes = (await getCollection('field-notes', ({ data }) => data.fea
     <div class="cta-panel">
       <SectionKicker>The chats</SectionKicker>
       <h2>A small table, once a month, over coffee.</h2>
-      <p>Eight to ten marketing and growth leaders from dev-tool and SDK companies. One theme, no slides, off the record. It's where the arguments on this site get pressure-tested by the people living them.</p>
+      <p>Eight to ten marketing and growth leaders from dev-tool and SDK companies. One theme, no slides, off the record. It's where the arguments on this site get pressure-tested by the people who have to act on them.</p>
       <a class="btn btn--primary" href="/chats">Apply to join</a>
     </div>
   </section>

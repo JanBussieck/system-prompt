@@ -61,7 +61,7 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
           };
           f.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const success = f.getAttribute('data-success') || 'Thanks — got it.';
+            const success = f.getAttribute('data-success') || 'Thanks, got it.';
             const submit = f.querySelector('[type="submit"]');
             if (submit) submit.disabled = true;
             try {
@@ -69,10 +69,10 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
               if (r.ok) { f.reset(); show(success, true); }
               else {
                 const d = await r.json().catch(() => null);
-                show(d && d.errors ? d.errors.map((x) => x.message).join(', ') : 'Something went wrong — please try again.', false);
+                show(d && d.errors ? d.errors.map((x) => x.message).join(', ') : 'Something went wrong. Please try again.', false);
               }
             } catch (err) {
-              show('Network error — please try again.', false);
+              show('Network error. Please try again.', false);
             } finally {
               if (submit) submit.disabled = false;
             }

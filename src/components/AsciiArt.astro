@@ -12,7 +12,7 @@ const { art, variant = 'full', label = 'system-prompt' } = Astro.props;
     <div class="ascii-bar">
       <span class="dot"></span><span class="dot"></span><span class="dot"></span>
       <em class="ascii-label">{label} — doodlepad</em>
-      <span class="ascii-hint" aria-hidden="true">psst — click to scribble ✎</span>
+      <span class="ascii-hint" aria-hidden="true">psst, click to scribble ✎</span>
     </div>
     <pre class="ascii-body"><code
       data-ascii-art
@@ -20,7 +20,7 @@ const { art, variant = 'full', label = 'system-prompt' } = Astro.props;
       spellcheck="false"
       role="textbox"
       aria-multiline="true"
-      aria-label="ASCII doodle — click to edit it"
+      aria-label="ASCII doodle, click to edit it"
     >{art}</code></pre>
   </figure>
 ) : (

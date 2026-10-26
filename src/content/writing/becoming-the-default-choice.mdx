@@ -6,27 +6,33 @@ tags: ["distribution", "llm", "docs"]
 featured: false
 ---
 
-Distribution used to mean getting in front of a person: a search result, a conference talk, a well-timed tweet. Now a growing share of your distribution runs through models that suggest, scaffold, and import on the developer's behalf. If the model defaults to a competitor, you are invisible at the exact moment the choice is made.
+Distribution used to mean getting in front of a person. A search result, a conference talk, a well-timed tweet. A growing share of it now runs through models that suggest, scaffold, and import on the developer's behalf, and if the model defaults to a competitor you're invisible at the exact moment the choice gets made.
 
-Getting to be that default is a discipline, and it is not the same as SEO.
+Becoming that default is its own discipline, and it isn't SEO.
 
 ## Three surfaces that decide the default
 
-**Retrieval.** When an agent needs a tool for your category, what does it pull? Models lean on what is well-represented and unambiguous in their training and retrieval. Owning a clear category noun ("the Postgres backend," "the cross-platform graphics engine") gives the model a clean handle to reach for. Fuzzy positioning makes you unretrievable.
+### Retrieval
 
-**Citation.** When a model explains how to do the thing, does it name you? This is downstream of how consistently and clearly your approach is described across the open web: your docs, yes, but also the answers, tutorials, and posts that reference them. Being the canonical explanation of a problem is how you become the canonical tool for it.
+When an agent needs a tool for your category, what does it pull? Models lean on whatever is well represented and unambiguous in their training and retrieval. A clear category noun, "the Postgres backend" or "the cross-platform graphics engine," gives the model a clean handle to reach for. Fuzzy positioning makes you unretrievable.
 
-**Import.** The final mile. When code actually gets written, is it `import you` or `import them`? This is won by everything in your quickstart being correct, current, and the path of least resistance. The default import is the one that just works when a model tries it.
+### Citation
+
+When a model explains how to do the thing, does it name you? That depends on how consistently your approach is described across the open web: your docs, but also the answers, tutorials, and posts that reference them. Become the canonical explanation of a problem and you become the canonical tool for it.
+
+### Import
+
+When code actually gets written, is it `import you` or `import them`? You win this by making everything in your quickstart correct, current, and easier than the alternatives. The default import is the one that works when a model tries it.
 
 ## Make yourself the easy answer
 
 A few concrete moves:
 
-- **Ship an `llms.txt` and treat your docs as a machine-read surface,** not just a human one. Structure, stable URLs, and unambiguous naming beat clever copy.
-- **Publish the canonical example for your category** and make it so clean that other people's tutorials copy it. Their content becomes your distribution.
-- **Reduce the number of correct ways to use your tool to one.** Optionality confuses models. A single blessed path gets reproduced faithfully.
-- **Keep your public surface consistent over time.** Every rename, every breaking change, resets the model's confidence and hands the default back to whoever held still.
+- Ship an `llms.txt` and treat your docs as a machine-read surface, not only a human one. Structure, stable URLs, and unambiguous naming beat clever copy.
+- Publish the canonical example for your category, clean enough that other people's tutorials copy it. Their content becomes your distribution.
+- Reduce the number of correct ways to use your tool to one. Optionality confuses models, and a single blessed path gets reproduced faithfully.
+- Hold your public surface still. Every rename and every breaking change resets the model's confidence and hands the default to whoever didn't move.
 
 ## The mindset shift
 
-For years we optimized to be *discovered* by people who were looking. The new job is to be *assumed* by models that are building. Discovery is a moment of attention you have to win again and again. Being the default is a position you hold until someone actively unseats you. Get there first, then be boring enough to stay.
+For years we optimized to be *discovered* by people who were looking. The job now is to be *assumed* by models that are building. Discovery is attention you win again and again. A default is a position you keep until someone unseats you, which argues for getting there early and then being boring about it.

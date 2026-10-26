@@ -6,36 +6,36 @@ tags: ["open-source", "strategy", "agents"]
 featured: true
 ---
 
-There's a sharp argument making the rounds that [dev tools must be open source](https://blog.exe.dev/devtools-must-be-open-source). The reasoning is genuinely good, so it's worth stating fairly before taking it apart. It goes: personalization used to have terrible ROI because you had to maintain your fork forever. Agents fix that. An agent can fetch upstream nightly and rebase your local changes automatically, so custom adaptations are finally cheap. Configuration files and plugin APIs were always a poor substitute for editing the real thing. Therefore tools should ship their source, so users (and their agents) can personalize freely.
+There's a sharp argument making the rounds that [dev tools must be open source](https://blog.exe.dev/devtools-must-be-open-source). The reasoning is genuinely good, so it's worth stating fairly before taking it apart. It goes like this. Personalization used to have terrible ROI because you had to maintain your fork forever. Agents fix that. An agent can fetch upstream nightly and rebase your local changes automatically, so custom adaptations are finally cheap. Configuration files and plugin APIs were always a poor substitute for editing the real thing. Therefore tools should ship their source, so users and their agents can personalize freely.
 
-I agree with the premise and reject the conclusion. Here is where it goes wrong.
+I agree with the premise and reject the conclusion. Here's where it goes wrong.
 
 ## "Configuration is dead" is right. "So open source" doesn't follow.
 
 The strongest part of the argument is the death of configuration. Config files and plugin systems expose a shallow, pre-negotiated set of knobs. Agents blow past that ceiling; they want to reach into the actual building blocks. Correct.
 
-But that is an argument for *deeper, more granular primitives*, not for a particular license. The mistake is conflating two different things: **access to capable building blocks** and **a free software license**. You can give an agent everything it needs to compose a custom solution, deep APIs, real primitives, an MCP server it can act through, without publishing your source under an OSI license. Openness of *platform* and openness of *source* are separate axes, and the article collapses them.
+But that's an argument for deeper, more granular primitives, not for a particular license. The mistake is conflating access to capable building blocks with a free software license. You can give an agent everything it needs to compose a custom solution, deep APIs, real primitives, an MCP server it can act through, without publishing your source under an OSI license. Openness of platform and openness of source are separate axes, and the article collapses them.
 
 ## Reading and modifying is not the same as a free license
 
-Here's the part the open-source framing quietly skips: **source-available is a thing.** You can let customers read the code, understand it, even patch it locally, under a commercial license that isn't free and isn't OSI-approved. "The agent needs to see the source to personalize" and "the source must be open source" are different claims. The first is often reasonable. The second is a business decision the first does not require.
+Here's the part the open-source framing quietly skips: source-available is a thing. You can let customers read the code, understand it, even patch it locally, under a commercial license that isn't free and isn't OSI-approved. "The agent needs to see the source to personalize" and "the source must be open source" are different claims. The first is often reasonable. The second is a business decision the first doesn't require.
 
-If the real need is legibility and modifiability, source-available licensing delivers both while keeping a business alive. Being able to read and change code does not imply the right to redistribute it for free.
+If the real need is legibility and modifiability, source-available licensing delivers both while keeping a business alive. Being able to read and change code doesn't imply the right to redistribute it for free.
 
 ## Open source is a brutal way to fund a commercial tool
 
-Open source is a spectacular way to build adoption and a famously punishing way to fund the people doing the building. The graveyard of critical, unmaintained OSS is not an accident; it is the predictable result of severing the tool from a durable way to pay for it.
+Open source is a spectacular way to build adoption and a famously punishing way to fund the people doing the building. The graveyard of critical, unmaintained OSS isn't an accident. It's what happens when you sever a tool from a durable way to pay for it.
 
-And developers know this. Given the choice, most of us actually *want* the builders of the tools we depend on to get paid, because a well-funded vendor absorbing breaking changes, shipping security patches, and answering support tickets is worth more than a repo that goes quiet in eighteen months. Sustainability is a feature.
+And developers know this. Given the choice, most of us actually *want* the builders of the tools we depend on to get paid, because a well-funded vendor absorbing breaking changes, shipping security patches, and answering support tickets is worth more than a repo that goes quiet in eighteen months.
 
 ## Depth is the moat agents reward
 
-The deeper primitives the article correctly demands are expensive to build. At IMG.LY we wrote a graphics processing engine from scratch to get true cross-platform rendering, the same output on the web, on the server, on mobile, down to the pixel. That is years of work you cannot vibecode and cannot get from stitching libraries together. It is exactly the kind of deep building block an agent wants to compose against.
+The deeper primitives the article correctly demands are expensive to build. At IMG.LY we wrote a graphics processing engine from scratch to get true cross-platform rendering, the same output on the web, on the server, and on mobile, down to the pixel. That's years of work you can't vibecode and can't get from stitching libraries together. It's also exactly the kind of deep building block an agent wants to compose against.
 
-So we're making the platform more open in the way that matters: exposing those primitives, giving agents real APIs and tools to assemble bespoke solutions on top. Open enough to build anything. Not open source.
+So we're making the platform more open in the way that matters, exposing those primitives and giving agents real APIs and tools to assemble bespoke solutions on top. Open enough to build anything. Not open source.
 
 ## Even with cheap rebasing, you may not want to fork
 
-Grant the article its best case: agents really can rebase your patches nightly at near-zero cost. You still might not want to. The moment you fork, you have opted out of the vendor's ecosystem. You own the security surface. You own compatibility with the next breaking change. You own the thing that goes wrong at 2am. Automated rebasing lowers the mechanical cost of maintaining a fork; it does nothing about the *responsibility* of owning one. For most teams, staying inside a maintained, supported platform is the rational choice, not a limitation to be engineered away.
+Grant the article its best case: agents really can rebase your patches nightly at near-zero cost. You still might not want to. The moment you fork, you've opted out of the vendor's ecosystem. You own the security surface. You own compatibility with the next breaking change. You own the thing that goes wrong at 2am. Automated rebasing lowers the mechanical cost of maintaining a fork and does nothing about the responsibility of owning one. For most teams, staying inside a maintained, supported platform is the rational choice rather than a limitation to be engineered away.
 
-The future the article points at is real: config is dead, agents want depth, personalization is getting cheap. The answer is deep primitives and an open, agent-ready platform under a license that keeps the builders funded. Open the platform. You don't have to open the source.
+The future the article points at is real. Config is dead, agents want depth, personalization is getting cheap. The answer is deep primitives and an open, agent-ready platform under a license that keeps the builders funded. Open the platform. You don't have to open the source.

@@ -3,7 +3,7 @@ export const SITE = {
   tagline: 'Marketing & growth for dev tools in the age of agents.',
   url: 'https://systemprompt.chat',
   description:
-    'A monthly coffee chat and field guide for marketing and growth leaders at dev-tool and SDK companies navigating the vibecoding, agentic-first era.',
+    'A monthly coffee chat and field guide for marketing and growth leaders at dev-tool and SDK companies, written for the vibecoding era.',
   author: 'System Prompt',
 } as const;
 

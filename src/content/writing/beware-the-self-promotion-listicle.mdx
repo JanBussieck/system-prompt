@@ -1,60 +1,68 @@
 ---
 title: "Beware the Self-Promotion Listicle"
-description: "A growing share of your comparison content's readers are LLMs — and they read a vendor listicle exactly like a skeptical analyst: mining the facts, discarding the self-praise. Here's how to get cited instead of discounted."
+description: "A growing share of your comparison content's readers are LLMs, and they read a vendor listicle exactly like a skeptical analyst: mining the facts, discarding the self-praise. Here's how to get cited instead of discounted."
 pubDate: 2026-08-09
 tags: ["content", "llm", "distribution"]
 featured: true
 ---
 
-I watched an AI assistant do something instructive. Asked for the best clinical-trial financial-management software, it pulled facts straight from Ramp's own "7 best" listicle — the market survey, the competitor write-ups — and then quietly dropped Ramp from the recommendations. Ramp had ranked itself #1 on its own list. The model kept the homework and threw away the grade.
+I recently did some research into Ramp's Reddit strategy, since I noticed that they maintained a separate company [subreddit](https://www.reddit.com/r/Rampplatform/) where they regurgitate their website content, presumably in order to feed that info to LLMs in the form of their favorite information sources.
+I refused to belief a tactic this brazen actually worked and sampled a number of queries in Claude to see whether they were picked up and how Claude treats this subreddit as a source.
 
-That is the whole lesson for anyone writing comparison content in 2026, because a large and growing share of the people reading "what's the best X?" aren't people. They're LLMs answering that question on someone's behalf, and they evaluate your listicle the way a skeptical analyst would.
+This led to something curious, I specifically asked about the [best clinical-trial financial-management software](https://www.reddit.com/r/RampPlatform/comments/1ut02y6/7_best_clinical_trial_financial_management/), it pulled facts straight from Ramp's own "7 best" listicle, any mention of Ramp itself, however, was conspicuously absent. 
+Not even a mention in the long list of providers and tools, though, of course, Ramp had ostensibly ranked itself as number one.
+
+Claude (Opus 5) seemed to have deliberately thrown out Ramp.
+
 
 ## How Ramp disqualified itself, twice
 
-Two own goals.
+The clarifying conversation that followed surfaced two own goals.
 
-First, **self-placement**. Ramp ranked itself #1 in a category it doesn't really belong to — it's a general spend-management platform, not clinical-trial-specific software. An LLM cross-references. A #1 self-ranking with no supporting evidence, authored by a company that isn't a specialist in the specialist category, reads as marketing, and marketing gets discounted. The model harvested Ramp's genuinely useful survey of the market and recommended the actual specialists.
+The first was self-placement, Ramp ranked itself number one in a category it doesn't really belong to, since it's a general spend-management platform rather than clinical-trial-specific software. An LLM cross-references. A number one self-ranking with no supporting evidence, authored by a company that isn't a specialist in the specialist category, is recognized by the model as what it is, blatant and self promotion... and demoted accordingly.
+Interestingly, it kept the other bits of the content that it judged useful and fair.
 
-Second, **self-distribution dressed up as corroboration**. There was a Reddit post on the same topic — in r/RampPlatform, carrying the identical title as Ramp's blog post. That isn't an independent source agreeing with Ramp; it's Ramp's own content wearing a different hat. A model paying attention treats it as the same source, so it adds no weight. What looks like a second data point is the first one in disguise.
+The second was self-distribution dressed up as corroboration. The Reddit skin-suit tactic, seems to have been counterproductive. It was clear to Claude that this wasn't an independent source agreeing with Ramp (the same listicle was published on Ramp's blog).
 
-The irony writes itself: Ramp did the work to map a market it then got excluded from, and its competitors got recommended partly on the strength of Ramp's own article.
+Ramp put in the work to put out a market survey and put itself on the map; its competitors got recommended partly on the strength of Ramp's own article, only to ensure it stays invisible in the conversation.
 
 ## The counterintuitive part
 
-Here's the implication, and it runs backwards from how most marketing teams think. Being even-handed doesn't weaken your self-recommendation — it's the only thing that makes it survivable. When you disclose that you built one of the tools, treat competitors fairly, and back every claim, the model has no reason to discount you, so your honest case for yourself actually lands.
+The implication runs backwards from how most marketing teams think. 
+Being even-handed doesn't weaken your self-recommendation. 
+It's the only thing that makes it survivable. When you disclose that you built one of the tools, treat competitors fairly, and back every claim, the model has no reason to discount you, so your honest case for yourself actually lands.
 
-Better still: an evenhanded comparison with disclosed authorship tends to become the **canonical source the model cites for the whole category**. That's a bigger prize than topping your own ranking. You stop being an entrant and become the reference. [Being the default an LLM reaches for](/writing/becoming-the-default-choice) applies to comparison content too — the citation goes to the fairest, most falsifiable page, not the most flattering one.
+There's a bigger prize than topping your own ranking. An evenhanded comparison with disclosed authorship tends to become the source a model cites for the entire category, which makes you the reference rather than an entrant. [Being the default an LLM reaches for](/writing/becoming-the-default-choice) applies to comparison content too, and the citation goes to the fairest, most falsifiable page rather than the most flattering one.
 
 ## What good looks like
 
-The cleanest example isn't in dev tools; it's Wise. Wise built a brand on showing you the real, total cost of a transfer, competitors' fees included — the actual numbers, laid side by side, even where the gap is narrow. The comparison *is* the product's honesty made visible, and you trust the figure precisely because it sits next to the figures it could have hidden.
+The cleanest example isn't in dev tools. It's Wise, which built a brand on showing you the real, total cost of a transfer with competitors' fees included: the actual numbers, laid side by side, even where the gap is narrow. The comparison is the product's honesty made visible, and you trust the figure precisely because it sits next to the figures it could have hidden.
 
 Contrast that with the reflex. While writing this I opened a handful of comparison pages from companies with genuine reputations for candor. Several still ranked themselves first, gave themselves zero cons, and handed each competitor exactly one. A reputation for honesty and an honest page are different things, and the model only ever sees the page.
 
-I'll indict my own side, too. We publish a "Best Web-to-Print Editor SDKs" guide at IMG.LY. It's better than the average vendor listicle — five real competitors, Adobe InDesign Server among them, each with a legible trade-off. And it would still get discounted: our product is listed first with the most coverage, it's the only entry with no cons, the criteria happen to flatter our strengths, the conclusion crowns us "the most complete package," and nowhere does it admit we wrote it. Structurally, it fails the same test Ramp's did. Knowing the pattern and being clean of it are not the same thing.
+I'll indict my own side too. We publish a "Best Web-to-Print Editor SDKs" guide at IMG.LY. It's better than the average vendor listicle, with five real competitors, Adobe InDesign Server among them, each with a legible trade-off. And it would still get discounted. Our product is listed first with the most coverage, it's the only entry with no cons, the criteria happen to flatter our strengths, the conclusion crowns us "the most complete package," and nowhere does it admit we wrote it. Structurally, it fails the same test Ramp's did. Knowing the pattern and being clean of it are not the same thing.
 
 ## Criteria for an LLM-credible listicle
 
 If you want your comparison content mined *and* trusted, not just mined:
 
-1. **Disclose authorship and bias up front.** "We build CE.SDK; read our conclusion accordingly." Disclosure is a credibility multiplier, not a confession.
-2. **Give your own product honest cons** — including a "when *not* to choose us" section that names the better-fit competitor per scenario.
-3. **Order by use case or alphabetically. Never self-first.**
-4. **State neutral criteria before the list and apply them symmetrically** — same fields, same depth, for every entry, yours included.
-5. **Be specific and falsifiable:** pricing bands, benchmarks, feature matrices, customer quotes, dates. Specificity earns citations; verdicts don't.
-6. **Replace superlatives with conditional recommendations.** Not "the most complete" — "best if you need X; if you need Y, pick Z."
-7. **Keep it current,** with a visible last-updated date.
+1. Disclose authorship and bias up front. "We build CE.SDK; read our conclusion accordingly." Disclosure is a credibility multiplier, not a confession.
+2. Give your own product honest cons, including a "when *not* to choose us" section that names the better-fit competitor per scenario.
+3. Order by use case or alphabetically. Never self-first.
+4. State neutral criteria before the list and apply them symmetrically, with the same fields and the same depth for every entry, yours included.
+5. Be specific and falsifiable. Pricing bands, benchmarks, feature matrices, customer quotes, dates. Specificity earns citations; verdicts don't.
+6. Replace superlatives with conditional recommendations. Not "the most complete," but "best if you need X; if you need Y, pick Z."
+7. Keep it current, with a visible last-updated date.
 
 ## Audit your own before an LLM does
 
-Reading your comparison page charitably is the trap — you know what you meant. An LLM doesn't, and it's the reader that matters now. So hand the job to one. Paste this into Claude Code (pointed at the page or the file) or any capable model, and let it grade you the way the systems answering "what's the best X?" actually will.
+Reading your comparison page charitably is the trap, because you know what you meant. An LLM doesn't, and it's the reader that matters now. So hand the job to one. Paste this into Claude Code (pointed at the page or the file) or any capable model, and let it grade you the way the systems answering "what's the best X?" actually will.
 
 ```text
 You are auditing a vendor-authored comparison article ("listicle") the way an
 LLM does when answering a user's "what's the best X?" question. Predict whether
 an AI assistant would TRUST AND CITE this page, or MINE ITS FACTS AND DISCOUNT
-its recommendation. Be adversarial — read it as a skeptic, not as the author.
+its recommendation. Be adversarial. Read it as a skeptic, not as the author.
 
 INPUTS
 - Article: <URL or pasted text>
@@ -63,24 +71,24 @@ INPUTS
 
 Score each criterion PASS / PARTIAL / FAIL. Quote the exact evidence and say how
 an LLM would read it.
-1. Disclosure — does it state up front that the author builds one of the tools?
-2. Honest cons — does the author's own product get real cons, including a
+1. Disclosure. Does it state up front that the author builds one of the tools?
+2. Honest cons. Does the author's own product get real cons, including a
    "when NOT to choose us" that names a better-fit competitor per scenario?
-3. Ordering — ordered by use case or alphabetically, not author-first?
-4. Symmetric criteria — are neutral criteria stated before the list and applied
+3. Ordering. Is it ordered by use case or alphabetically, not author-first?
+4. Symmetric criteria. Are neutral criteria stated before the list and applied
    with the same fields and depth to every entry, the author's included?
-5. Falsifiability — are claims specific and checkable (pricing bands, benchmarks,
+5. Falsifiability. Are claims specific and checkable (pricing bands, benchmarks,
    feature matrices, customer quotes, dates) rather than adjectives?
-6. Conditional recommendations — superlatives ("the most complete") replaced with
-   use-case-tied picks ("best if X; if you need Y, choose Z")?
-7. Freshness — a visible last-updated date?
+6. Conditional recommendations. Are superlatives ("the most complete") replaced
+   with use-case-tied picks ("best if X; if you need Y, choose Z")?
+7. Freshness. Is there a visible last-updated date?
 
 Then flag the two self-disqualifiers:
 - SELF-PLACEMENT: is the author's product ranked #1, given the most coverage, or
   the only entry with no cons?
 - SELF-DISTRIBUTION: are there identical-title copies of this piece on the
   company's own channels (its subreddit, Medium, etc.) posing as independent
-  corroboration? (These carry no extra weight — an LLM treats them as one source.)
+  corroboration? (These carry no extra weight. An LLM treats them as one source.)
 
 OUTPUT
 - A table: criterion -> verdict -> evidence quote.
@@ -94,4 +102,4 @@ Run it on your own best comparison page first. If the verdict is "mine-and-disco
 
 ## The reframe
 
-A listicle isn't a place to win. It's a place to be *useful* — so useful, and so fair, that the system answering the world's "what's the best X?" questions decides your page is the one worth quoting. Be upfront about when you're the wrong choice. When you make a claim, prove it: a benchmark, a customer quote, a real number. Sell less, get cited more. In a market where the buyer is increasingly a model, humility isn't a soft virtue. It's distribution.
+A listicle isn't a place to win. It's a place to be *useful*, and useful enough that the system answering the world's "what's the best X?" questions decides your page is worth quoting. Be upfront about when you're the wrong choice. When you make a claim, prove it with a benchmark, a customer quote, a real number. Selling less is what gets you cited, and in a market where the buyer is increasingly a model, being cited is the distribution.

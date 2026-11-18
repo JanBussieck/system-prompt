@@ -1,10 +1,12 @@
 export const SITE = {
-  name: 'System Prompt',
-  tagline: 'Marketing & growth for dev tools in the age of agents.',
-  url: 'https://systemprompt.chat',
+  name: 'AX Factor',
+  tagline: 'Agentic marketing for dev tools.',
+  // AX = agent experience: how well an AI agent can find, pick and build with a dev tool.
+  axExpansion: 'AX = agent experience',
+  url: 'https://axfactor.dev',
   description:
-    'A monthly coffee chat and field guide for marketing and growth leaders at dev-tool and SDK companies, written for the vibecoding era.',
-  author: 'System Prompt',
+    'AX means agent experience: how well an AI agent can find, pick and build with a dev tool. AX Factor is a blog and monthly coffee chat on agentic marketing for dev-tool and SDK companies.',
+  author: 'AX Factor',
 } as const;
 
 // TODO(owner): replace with real Formspree form IDs from formspree.io.

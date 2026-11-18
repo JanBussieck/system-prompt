@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://systemprompt.chat',
+  site: 'https://axfactor.dev',
   output: 'static',
   integrations: [mdx(), sitemap()],
   markdown: {

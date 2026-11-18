@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { SITE } from '../config';
 const nav = [
   { href: '/writing', label: 'Writing' },
   { href: '/field-notes', label: 'Field Notes' },
@@ -10,7 +11,8 @@ const path = Astro.url.pathname;
 ---
 <header class="site-header">
   <div class="container hd">
-    <a class="wordmark" href="/"><span class="wm-mono">&gt;_</span> System Prompt</a>
+    <a class="wordmark" href="/" aria-label={SITE.name}><span class="wm-mono">AX</span> Factor</a>
+    <span class="wm-tag">{SITE.axExpansion}</span>
     <nav aria-label="Primary">
       {nav.map((i) => (
         <a href={i.href} class:list={['nav-link', { active: path === i.href || path.startsWith(i.href + '/') }]}>{i.label}</a>
@@ -27,15 +29,17 @@ const path = Astro.url.pathname;
     border-bottom: var(--border);
   }
   .hd { display: flex; align-items: center; gap: var(--sp-6); height: 64px; }
-  .wordmark { font-weight: 600; letter-spacing: -.01em; text-decoration: none; margin-right: auto; white-space: nowrap; }
+  .wordmark { font-weight: 600; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
+  .wm-tag { font: 400 var(--fs-xs)/1 var(--font-mono); color: var(--ink-faint); white-space: nowrap; margin-left: calc(var(--sp-3) - var(--sp-6)); }
+  nav { margin-left: auto; }
   .wm-mono { font-family: var(--font-mono); color: var(--accent); }
   nav { display: flex; gap: var(--sp-6); }
   .nav-link { font-size: var(--fs-sm); color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
   .nav-link.active, .nav-link:hover { color: var(--ink); }
+  @media (max-width: 860px) { .wm-tag { display: none; } }
   @media (max-width: 640px) {
     .hd { gap: var(--sp-4); }
     nav { gap: var(--sp-4); }
-    .wordmark .wm-label { display: none; }
     .nav-link { font-size: var(--fs-xs); }
   }
 </style>

@@ -1,11 +1,11 @@
-# System Prompt
+# AX Factor
 
-Companion site for **System Prompt** — a monthly coffee chat and field guide for
-marketing & growth leaders at dev-tool / SDK companies navigating the vibecoding,
-agentic-first era.
+Site for **AX Factor** — a blog and monthly coffee chat on agentic marketing for
+dev-tool / SDK companies. "AX" means agent experience: how well an AI agent can
+find, pick and build with a dev tool.
 
-Tagline: *Marketing & growth for dev tools in the age of agents.*
-Domain: [systemprompt.chat](https://systemprompt.chat)
+Tagline: *Agentic marketing for dev tools.*
+Domain: [axfactor.dev](https://axfactor.dev) (formerly System Prompt, systemprompt.chat)
 
 Built with [Astro](https://astro.build) + MDX. Static output, near-zero JS,
 hand-authored CSS design tokens, self-hosted fonts, light/dark theme.
@@ -96,8 +96,8 @@ scoped `<style>` blocks. There is no Tailwind.
 
 `pnpm build` emits a fully static `dist/`. Host it anywhere static:
 Vercel, Netlify, or Cloudflare Pages (framework preset: Astro). Then point
-`systemprompt.chat` DNS at the host. `site` is already set to
-`https://systemprompt.chat` in `astro.config.mjs` for canonical URLs and the
+`axfactor.dev` DNS at the host. `site` is already set to
+`https://axfactor.dev` in `astro.config.mjs` for canonical URLs and the
 sitemap.
 
 ## Structure

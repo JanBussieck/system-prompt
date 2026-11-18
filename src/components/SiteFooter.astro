@@ -13,7 +13,7 @@ const nav = [
   <div class="container">
     <div class="ft-top">
       <div class="ft-brand">
-        <a class="wordmark" href="/"><span class="wm-mono">&gt;_</span> System Prompt</a>
+        <a class="wordmark" href="/" aria-label={SITE.name}><span class="wm-mono">AX</span> Factor</a>
         <p class="ft-desc">{SITE.description}</p>
         <div class="ft-nl"><NewsletterForm variant="inline" /></div>
       </div>
@@ -23,8 +23,8 @@ const nav = [
       </nav>
     </div>
     <div class="ft-bottom">
-      <p class="ft-mono">&gt; convened monthly over coffee</p>
-      <p class="ft-copy">© {year} System Prompt</p>
+      <p class="ft-mono">&gt; {SITE.axExpansion.toLowerCase()}</p>
+      <p class="ft-copy">© {year} {SITE.name}</p>
     </div>
   </div>
 </footer>
